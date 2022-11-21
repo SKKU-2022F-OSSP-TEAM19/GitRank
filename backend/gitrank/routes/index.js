@@ -54,7 +54,7 @@ router.post('/user/signup',(req,res)=>{
       IMG:"none",
       INTERESTS:Object.values(body.INTERESTS),
       COMMENT:"",
-      SCORE:"",
+      SCORE:0,
       SKILLS:Object.values(body.SKILLS)
     }
     DB_users.push(userdata);
