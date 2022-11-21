@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var privateInfo=require('./privateInfo');
 
 let DB_users=[]; //{ID: , PW: , GITHUBID: ,SCORE,INTERESTS}
 let DB_profile=[];
