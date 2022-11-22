@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="v10_1288">
+        <div class="name">
+            <a href="#" class="v10_1290">GitRank</a>
+            <a href="myprofile.html" class="v10_1291">Done</a>
+            <a href="signin.html" class="v10_1292">Sign out</a>
+        </div>
+        <div class="container">
+            <div class="image">
+                <img src="image/github.png" class="img">
+            </div>
+            <div class="data">
+                <table>
+                    <tr>
+                        <td style="width:120px">
+                            <p>Github</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px">
+                            <p>Interests</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px">
+                            <p>Contact</p>
+                        </td>
+                    </tr>
+                </table>
+                <fieldset style="height: 225px">
+                    <legend style="font-size:18px; font-family: Inter;">Comment</legend>
+                    <textarea id="comment" cols="60" rows="10"></textarea>
+                </fieldset>
+            </div>
+        </div>
+        <button class="v10_1306" id="image_upload">
+            Upload
+        </button>
+        <input type="text" class="v10_1308" id="my_github">
+        <input type="text" class="v10_1331" id="my_interests">
+        <input type="text" class="v10_1332" id="my_contact">
+    </div>
+</body>
+
+</html> <br /><br />
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .v10_1288 {
+        width: 100%;
+        height: 1024px;
+        background: rgba(255, 255, 255, 1);
+        opacity: 1;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        overflow: hidden;
+    }
+
+    .name {
+        color: #fff;
+    }
+
+    .v10_1290 {
+        width: 157px;
+        color: rgba(0, 0, 0, 1);
+        position: absolute;
+        top: 28px;
+        left: 126px;
+        font-family: Inter;
+        font-weight: Bold;
+        font-size: 40px;
+        opacity: 1;
+        text-align: left;
+        text-decoration: none;
+    }
+
+    .v10_1291 {
+        width: 80px;
+        color: rgba(0, 0, 0, 1);
+        position: absolute;
+        top: 33px;
+        left: 1010px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 32px;
+        opacity: 1;
+        text-align: left;
+        text-decoration: none;
+    }
+
+    .v10_1292 {
+        width: 125px;
+        color: rgba(0, 0, 0, 1);
+        position: absolute;
+        top: 33px;
+        left: 1195px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 32px;
+        opacity: 1;
+        text-align: left;
+        text-decoration: none;
+    }
+
+    .name {
+        color: #fff;
+    }
+
+    .v10_1306 {
+        width: 180px;
+        height: 50px;
+        background: rgba(255, 170, 0, 1);
+        opacity: 1;
+        position: absolute;
+        top: 551px;
+        left: 355px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        overflow: hidden;
+    }
+
+    .v10_1307 {
+        width: 81px;
+        color: rgba(0, 0, 0, 1);
+        position: absolute;
+        top: 561px;
+        left: 404px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 24px;
+        opacity: 1;
+        text-align: left;
+    }
+
+    .v10_1308 {
+        width: 400px;
+        height: 35px;
+        background: rgba(255, 255, 255, 1);
+        opacity: 1;
+        position: absolute;
+        top: 175px;
+        left: 755px;
+        border: 1px solid rgba(255, 140, 0, 1);
+        overflow: hidden;
+    }
+
+    .v10_1331 {
+        width: 400px;
+        height: 35px;
+        background: rgba(255, 255, 255, 1);
+        opacity: 1;
+        position: absolute;
+        top: 220px;
+        left: 755px;
+        border: 1px solid rgba(255, 140, 0, 1);
+        overflow: hidden;
+    }
+
+    .v10_1332 {
+        width: 400px;
+        height: 35px;
+        background: rgba(255, 255, 255, 1);
+        opacity: 1;
+        position: absolute;
+        top: 265px;
+        left: 755px;
+        border: 1px solid rgba(255, 140, 0, 1);
+        overflow: hidden;
+    }
+
+    .container {
+        position: absolute;
+        top: 138px;
+        left: 145px;
+        width: 1150px;
+        height: 450px;
+    }
+
+    .image {
+        position: absolute;
+        top: 56.25px;
+        left: 57.5px;
+        width: 345px;
+        height: 337.5px;
+        border-radius: 20px;
+    }
+
+    .img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 345px;
+        height: 337px;
+
+    }
+
+    .data {
+        position: absolute;
+        left: 460px;
+        width: 575px;
+        height: 450px;
+        display: flex;
+        padding-top: 30px;
+        flex-direction: column;
+    }
+
+    .data p {
+        margin: 10px;
+        font-family: Inter;
+        font-weight: Regular;
+        font-size: 18px;
+    }
+</style>
