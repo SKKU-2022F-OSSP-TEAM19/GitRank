@@ -19,7 +19,6 @@ login.addEventListener("click", () => {
     }
 
     // Test
-    // Move
     let user = {
         "user_id": user_id,
         "user_pw": user_pw,
@@ -31,8 +30,28 @@ login.addEventListener("click", () => {
         "comment": "",
 
     }
+    if (localStorage.getItem("signup")) {
+        user = JSON.parse(localStorage.getItem("signup"));
+        if (user_id !== user.user_id) {
+            alert("Invalid ID")
+            return;
+        }
+        if (user_pw !== user.user_pw) {
+            alert("Invalid PW");
+            return;
+        }
+    }
+    // Move
     localStorage.setItem("signin", JSON.stringify(user));
     let link = 'rank.html';
     location.href = link;
 })
+
+window.onload = function () {
+    localStorage.removeItem("edit");
+    localStorage.removeItem("signin");
+    if (localStorage.getItem("signup")) {
+        console.log(localStorage.getItem("signup"));
+    }
+}
 // =========================================================================

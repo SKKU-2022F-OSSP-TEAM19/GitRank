@@ -32,10 +32,11 @@ done.addEventListener("click", () => {
         "comment": user_com,
         "img": img_src,
         "skills": user.skills
-
     }
     console.log(edit);
     localStorage.setItem("edit", JSON.stringify(edit));
+    localStorage.setItem("signup", JSON.stringify(edit));
+    localStorage.setItem("signin", JSON.stringify(edit));
     console.log(edit);
     let link = 'myprofile.html';
     location.href = link;
@@ -43,8 +44,8 @@ done.addEventListener("click", () => {
 })
 
 window.onload = function () {
-    if (localStorage.getItem("myprofile")) {
-        user = JSON.parse(localStorage.getItem("myprofile"));
+    if (localStorage.getItem("signin")) {
+        user = JSON.parse(localStorage.getItem("signin"));
         console.log(user);
         let input_git = document.getElementById("my_github");
         input_git.value = user.user_git;
@@ -60,20 +61,6 @@ window.onload = function () {
 
         let img = document.getElementById("my_img");
         img.src = user.img;
-        console.log(img.src);
-    }
-    else if (localStorage.getItem("signup")) {
-        user = JSON.parse(localStorage.getItem("signup"));
-        console.log(user);
-        let input_git = document.getElementById("my_github");
-        input_git.value = user.user_git;
-        let input_itr = document.getElementById("my_interests");
-        input_itr.value = user.interests;
-    }
-    else if (localStorage.getItem("signin")) {
-        user = JSON.parse(localStorage.getItem("signin"));
-        console.log(user);
-
     }
 
 }

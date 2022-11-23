@@ -179,7 +179,7 @@ signup.addEventListener("click", () => {
         "img": "file:///C:/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4/Open_Project/GitRank/frontend/image/github.png"
     }
     localStorage.setItem("signup", JSON.stringify(user));
-    localStorage.removeItem("edit");
+    localStorage.setItem("signin", JSON.stringify(user));
 
     let link = 'rank.html';
     location.href = link;
