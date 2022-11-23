@@ -46,9 +46,8 @@
                     </fieldset>
                 </div>
             </div>
-            <button class="v10_1306" id="image_upload">
-                Upload
-            </button>
+            <input type="file" class="v10_1306" id="image_upload" accept=".jpg, .jpeg, .png">
+            <label for="image_upload" class="v10_1306">Upload</label>
         </form>
     </div>
     <script src="edit.js"></script>
@@ -129,18 +128,25 @@
     }
 
     .v10_1306 {
-        width: 180px;
-        height: 50px;
+        width: 100px;
+        height: 25px;
         background: rgba(255, 170, 0, 1);
         opacity: 1;
         position: absolute;
         top: 551px;
-        left: 355px;
+        left: 445px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
         overflow: hidden;
+        text-align: center;
+        align-items: center;
+    }
+
+    .v10_1306:hover {
+        background: rgb(77, 77, 77);
+        color: #fff;
     }
 
     .v10_1307 {
