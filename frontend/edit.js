@@ -33,11 +33,8 @@ done.addEventListener("click", () => {
         "img": img_src,
         "skills": user.skills
     }
-    console.log(edit);
-    localStorage.setItem("edit", JSON.stringify(edit));
     localStorage.setItem("signup", JSON.stringify(edit));
     localStorage.setItem("signin", JSON.stringify(edit));
-    console.log(edit);
     let link = 'myprofile.html';
     location.href = link;
 
@@ -61,6 +58,9 @@ window.onload = function () {
 
         let img = document.getElementById("my_img");
         img.src = user.img;
+    }
+    else {
+        alert("My information is not being received.")
     }
 
 }
