@@ -23,187 +23,200 @@
         crossorigin="anonymous"></script>
 
     <div class="container" style="text-align: center;">
-        <h1 class="mt-3"><strong>SIGN UP</strong></h1>
-        <h6>Already in member? <a href="./signin.html">Log in</a></h6>
-        <img alt="Github Logo" width="500" style="border:3px solid orange" class="rounded-3 mt-3"
-            data-src="https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/what-is-git-github-and-github-desktop-and-create-a-git-repository-in-github-usi/Images/github.png"
-            src="https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/what-is-git-github-and-github-desktop-and-create-a-git-repository-in-github-usi/Images/github.png">
+        <form method="get">
+            <h1 class="mt-3"><strong>SIGN UP</strong></h1>
+            <h6>Already in member? <a href="./signin.html">Log in</a></h6>
+            <img alt="Github Logo" width="500" style="border:3px solid orange" class="rounded-3 mt-3"
+                data-src="https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/what-is-git-github-and-github-desktop-and-create-a-git-repository-in-github-usi/Images/github.png"
+                src="https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/what-is-git-github-and-github-desktop-and-create-a-git-repository-in-github-usi/Images/github.png">
 
-        <div class="row g-3 align-items-center mt-3">
-            <div class="col-auto">
-                <label class="col-form-label"><i class="bi bi-person" style="font-size:24px"></i></label>
-            </div>
-            <div class="col-auto">
-                <input type="text" class="form-control" id="signup_id" placeholder="ID" style="border:2px solid orange">
-            </div>
-            <div class="col-auto">
-                <span class="form-text">
-                    Must be 6-20 characters long.
-                </span>
-            </div>
-        </div>
-        <div class="row g-3 align-items-center">
-            <div class="col-auto">
-                <label class="col-form-label"><i class="bi bi-lock" style="font-size:24px"></i></label>
-            </div>
-            <div class="col-auto">
-                <input type="password" class="form-control" id="signup_pw" placeholder="Password"
-                    style="border:2px solid orange">
-            </div>
-            <div class="col-auto">
-                <span class="form-text">
-                    Must be 8-20 characters long.
-                </span>
-            </div>
-        </div>
-        <div class="row g-3 align-items-center">
-            <div class="col-auto">
-                <label class="col-form-label"><i class="bi bi-github" style="font-size:24px"></i></label>
-            </div>
-            <div class="col-auto">
-                <input type="text" class="form-control" id="signup_github" placeholder="Github ID"
-                    style="border:2px solid orange">
-            </div>
-            <div class="col-auto">
-                <span class="form-text"></span>
-            </div>
-        </div>
-        <div class="row g-1 align-items-center mt-3">Interests</div>
-        <div class="container rounded-2 p-2" style="border:3px solid orange;">
-            <div class="row g-3 align-items-center" id="interests_wrapper">
+            <div class="row g-3 align-items-center mt-3">
                 <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="frontend" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
-                        for="frontend">Frontend</label><br>
+                    <label class="col-form-label"><i class="bi bi-person" style="font-size:24px"></i></label>
                 </div>
                 <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="backend" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="backend">Backend</label><br>
+                    <input type="text" class="form-control" id="signup_id" placeholder="ID"
+                        style="border:2px solid orange">
                 </div>
                 <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="ai" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="ai">AI</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="database" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
-                        for="database">Database</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="npl" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="npl">NPL</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="machine" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="machine">Machine
-                        learing</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="neural" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="neural">Neural
-                        network</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="algorithm" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
-                        for="algorithm">Algorithm</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="mining" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="mining">Data
-                        mining</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="security" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
-                        for="security">Security</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="embeded" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="embeded">Embeded
-                        System</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="mobile" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="mobile">Mobile
-                        application</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="web" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="web">Web
-                        programming</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="vr" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="vr">VR</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="ar" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="ar">AR</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="network" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="network">Network</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="reverse" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="reverse">Reverse
-                        engineering</label><br>
+                    <span class="form-text">
+                        Must be 6-20 characters long.
+                    </span>
                 </div>
             </div>
-        </div>
-        <div class="row g-1 align-items-center mt-3">Language</div>
-        <div class="container rounded-2 p-2" style="border:3px solid orange;">
-            <div class="row g-3 align-items-center" id="language_wrapper">
+            <div class="row g-3 align-items-center">
                 <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="python" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="python">Python</label><br>
+                    <label class="col-form-label"><i class="bi bi-lock" style="font-size:24px"></i></label>
                 </div>
                 <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="java" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="java">Java</label><br>
+                    <input type="password" class="form-control" id="signup_pw" placeholder="Password"
+                        style="border:2px solid orange">
                 </div>
                 <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="js" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="js">JavaScript</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="cpp" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="cpp">C++</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="php" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="php">PHP</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="ts" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="ts">TypeScript</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="c" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="c">C</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="go" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="go">Go</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="shell" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="shell">Shell</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="ruby" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="ruby">Ruby</label><br>
-                </div>
-                <div class="col-auto">
-                    <input type="checkbox" class="btn-check" id="c#" autocomplete="off">
-                    <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="c#">C#</label><br>
+                    <span class="form-text">
+                        Must be 8-20 characters long.
+                    </span>
                 </div>
             </div>
-        </div>
-        <button type="button" id="btn_signup" class="btn btn-primary ms-1 text-nowrap rounded-2 mt-3 mb-3">SIGN
-            UP</button>
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label class="col-form-label"><i class="bi bi-github" style="font-size:24px"></i></label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="signup_github" placeholder="Github ID"
+                        style="border:2px solid orange">
+                </div>
+                <div class="col-auto">
+                    <span class="form-text"></span>
+                </div>
+            </div>
+            <div class="row g-1 align-items-center mt-3">Interests</div>
+            <div class="container rounded-2 p-2" style="border:3px solid orange;">
+                <div class="row g-3 align-items-center" id="interests_wrapper">
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_frontend" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="itr_frontend">Frontend</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_backend" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="itr_backend">Backend</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_ai" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_ai">AI</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_database" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="itr_database">Database</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_npl" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_npl">NPL</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_machine" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_machine">Machine
+                            learing</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_neural" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_neural">Neural
+                            network</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_algorithm" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="itr_algorithm">Algorithm</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_mining" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_mining">Data
+                            mining</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_security" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="itr_security">Security</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_embeded" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_embeded">Embeded
+                            System</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_mobile" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_mobile">Mobile
+                            application</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_web" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_web">Web
+                            programming</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_vr" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_vr">VR</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_ar" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_ar">AR</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_network" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="itr_network">Network</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="itr_reverse" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_reverse">Reverse
+                            engineering</label><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-1 align-items-center mt-3">Language</div>
+            <div class="container rounded-2 p-2" style="border:3px solid orange;">
+                <div class="row g-3 align-items-center" id="language_wrapper">
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_python" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="skill_python">Python</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_java" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="skill_java">Java</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_js" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="skill_js">JavaScript</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_cpp" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="skill_cpp">C++</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_php" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="skill_php">PHP</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_ts" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="skill_ts">TypeScript</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_c" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="skill_c">C</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_go" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="skill_go">Go</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_shell" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="skill_shell">Shell</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_ruby" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                            for="skill_ruby">Ruby</label><br>
+                    </div>
+                    <div class="col-auto">
+                        <input type="checkbox" class="btn-check" id="skill_c#" autocomplete="off">
+                        <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="skill_c#">C#</label><br>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" id="btn_signup" class="btn btn-primary ms-1 text-nowrap rounded-2 mt-3 mb-3">SIGN
+                UP</button>
 
+        </form>
     </div>
 
 
