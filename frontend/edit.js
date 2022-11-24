@@ -5,13 +5,13 @@ done.addEventListener("click", () => {
     let input_git = document.getElementById("my_github");
     user_git = input_git.value;
     if (user_git.length) {
-        user.user_git = user_git;
+        user.GITHUB = user_git;
     }
 
     let input_itr = document.getElementById("my_interests");
     user_itr = input_itr.value;
     if (user_itr.length) {
-        user.interests = user_itr;
+        user.INTERESTS = user_itr;
     }
     let input_con = document.getElementById("my_contact");
     user_con = input_con.value;
@@ -24,14 +24,15 @@ done.addEventListener("click", () => {
 
 
     edit = {
-        "user_id": user.user_id,
-        "user_pw": user.user_pw,
-        "user_git": user.user_git,
-        "interests": user.interests,
-        "contact": user_con,
-        "comment": user_com,
-        "img": img_src,
-        "skills": user.skills
+        "ID": user.ID,
+        "PW": user.PW,
+        "GITHUB": user.GITHUB,
+        "INTERESTS": user.INTERESTS,
+        "CONTACT": user_con,
+        "COMMENT": user_com,
+        "IMG": img_src,
+        "SKILLS": user.SKILLS,
+        "SCORE": 0
     }
     localStorage.setItem("signup", JSON.stringify(edit));
     localStorage.setItem("signin", JSON.stringify(edit));
@@ -45,19 +46,19 @@ window.onload = function () {
         user = JSON.parse(localStorage.getItem("signin"));
         console.log(user);
         let input_git = document.getElementById("my_github");
-        input_git.value = user.user_git;
+        input_git.value = user.GITHUB;
 
         let input_itr = document.getElementById("my_interests");
-        input_itr.value = user.interests;
+        input_itr.value = user.INTERESTS;
 
         let input_contact = document.getElementById("my_contact");
-        input_contact.value = user.contact;
+        input_contact.value = user.CONTACT;
 
         let input_comment = document.getElementById("comment");
-        input_comment.value = user.comment;
+        input_comment.value = user.COMMENT;
 
         let img = document.getElementById("my_img");
-        img.src = user.img;
+        img.src = user.IMG;
     }
     else {
         alert("My information is not being received.")

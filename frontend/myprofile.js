@@ -11,12 +11,12 @@ window.onload = function () {
         user = JSON.parse(localStorage.getItem("signin"));
         console.log(user);
 
-        span_git.innerHTML = user.user_git;
-        span_itr.innerHTML = user.interests;
-        span_con.innerHTML = user.contact;
-        span_com.innerHTML = user.comment;
-        span_contribution.innerHTML = user.skills;
-        img.src = user.img;
+        span_git.innerHTML = user.GITHUB;
+        span_itr.innerHTML = user.INTERESTS;
+        span_con.innerHTML = user.CONTACT;
+        span_com.innerHTML = user.COMMENT;
+        span_contribution.innerHTML = user.SKILLS;
+        img.src = user.IMG;
 
 
     }

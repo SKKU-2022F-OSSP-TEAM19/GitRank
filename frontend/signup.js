@@ -41,11 +41,11 @@ signup.addEventListener("click", () => {
 
     let front = document.getElementById("itr_frontend");
     if (front.checked) {
-        itr.push("Frontend");
+        itr.push("FRONTEND");
     }
     let back = document.getElementById("itr_backend");
     if (back.checked) {
-        itr.push("Backend");
+        itr.push("BACKEND");
     }
     let ai = document.getElementById("itr_ai");
     if (ai.checked) {
@@ -53,7 +53,7 @@ signup.addEventListener("click", () => {
     }
     let db = document.getElementById("itr_database");
     if (db.checked) {
-        itr.push("Database");
+        itr.push("DATABASE");
     }
     let npl = document.getElementById("itr_npl");
     if (npl.checked) {
@@ -61,35 +61,35 @@ signup.addEventListener("click", () => {
     }
     let ml = document.getElementById("itr_machine");
     if (ml.checked) {
-        itr.push("Machine learning");
+        itr.push("MACHINE LEARNING");
     }
     let nn = document.getElementById("itr_neural");
     if (nn.checked) {
-        itr.push("Neural network");
+        itr.push("NEURAL NETWORK");
     }
     let al = document.getElementById("itr_algorithm");
     if (al.checked) {
-        itr.push("Algorithm");
+        itr.push("ALGORITHM");
     }
     let mining = document.getElementById("itr_mining");
     if (mining.checked) {
-        itr.push("Data mining");
+        itr.push("DATA MINING");
     }
     let sec = document.getElementById("itr_security");
     if (sec.checked) {
-        itr.push("Security");
+        itr.push("SECURITY");
     }
     let em = document.getElementById("itr_embeded");
     if (em.checked) {
-        itr.push("Embeded System");
+        itr.push("EMBEDED SYSTEM");
     }
     let mob = document.getElementById("itr_mobile");
     if (mob.checked) {
-        itr.push("Mobile application");
+        itr.push("MOBILE APPLICATION");
     }
     let web = document.getElementById("itr_web");
     if (web.checked) {
-        itr.push("Web programming");
+        itr.push("WEB PROGRAMMING");
     }
     let vr = document.getElementById("itr_vr");
     if (vr.checked) {
@@ -101,11 +101,11 @@ signup.addEventListener("click", () => {
     }
     let net = document.getElementById("itr_network");
     if (net.checked) {
-        itr.push("Network");
+        itr.push("NETWORK");
     }
     let rev = document.getElementById("itr_reverse");
     if (rev.checked) {
-        itr.push("Reverse engineering");
+        itr.push("REVERSE ENGINEERING");
     }
 
     if (itr.length < 1) {
@@ -117,15 +117,15 @@ signup.addEventListener("click", () => {
     skills = [];
     let py = document.getElementById("skill_python");
     if (py.checked) {
-        skills.push("Python");
+        skills.push("PYTHON");
     }
     let java = document.getElementById("skill_java");
     if (java.checked) {
-        skills.push("Java");
+        skills.push("JAVA");
     }
     let js = document.getElementById("skill_js");
     if (js.checked) {
-        skills.push("JavaScript");
+        skills.push("JAVASCRIPT");
     }
     let cpp = document.getElementById("skill_cpp");
     if (cpp.checked) {
@@ -137,7 +137,7 @@ signup.addEventListener("click", () => {
     }
     let ts = document.getElementById("skill_ts");
     if (ts.checked) {
-        skills.push("TypeScript");
+        skills.push("TYPESCRIPT");
     }
     let c = document.getElementById("skill_c");
     if (c.checked) {
@@ -145,15 +145,15 @@ signup.addEventListener("click", () => {
     }
     let go = document.getElementById("skill_go");
     if (go.checked) {
-        skills.push("Go");
+        skills.push("GO");
     }
     let shell = document.getElementById("skill_shell");
     if (shell.checked) {
-        skills.push("Shell");
+        skills.push("SHELL");
     }
     let ruby = document.getElementById("skill_ruby");
     if (ruby.checked) {
-        skills.push("Ruby");
+        skills.push("RUBY");
     }
     let cs = document.getElementById("skill_c#");
     if (cs.checked) {
@@ -169,14 +169,15 @@ signup.addEventListener("click", () => {
     // 7. move to rank.html
 
     let user = {
-        "user_id": user_id,
-        "user_pw": user_pw,
-        "user_git": user_git,
-        "interests": itr,
-        "skills": skills,
-        "contact": "test@gmail.com",
-        "comment": "I wanna be a good developer!",
-        "img": "file:///C:/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4/Open_Project/GitRank/frontend/image/github.png"
+        "ID": user_id,
+        "PW": user_pw,
+        "GITHUB": user_git,
+        "INTERESTS": itr,
+        "SKILLS": skills,
+        "CONTACT": "test@gmail.com",
+        "COMMENT": "I wanna be a good developer!",
+        "IMG": "file:///C:/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4/Open_Project/GitRank/frontend/image/github.png",
+        "SCORE": 0
     }
     localStorage.setItem("signup", JSON.stringify(user));
     localStorage.setItem("signin", JSON.stringify(user));

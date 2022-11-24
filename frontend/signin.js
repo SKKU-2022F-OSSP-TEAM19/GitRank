@@ -20,23 +20,24 @@ login.addEventListener("click", () => {
 
     // Test
     let user = {
-        "user_id": user_id,
-        "user_pw": user_pw,
-        "user_git": "",
-        "interests": [],
-        "skills": [],
-        "contact": "",
-        "img": "",
-        "comment": "",
+        "ID": user_id,
+        "PW": user_pw,
+        "GITHUB": "",
+        "INTERESTS": [],
+        "SKILLS": [],
+        "CONTACT": "",
+        "IMG": "",
+        "COMMENT": "",
+        "SCORE": 0
 
     }
     if (localStorage.getItem("signup")) {
         user = JSON.parse(localStorage.getItem("signup"));
-        if (user_id !== user.user_id) {
+        if (user_id !== user.ID) {
             alert("Invalid ID")
             return;
         }
-        if (user_pw !== user.user_pw) {
+        if (user_pw !== user.PW) {
             alert("Invalid PW");
             return;
         }
@@ -48,7 +49,6 @@ login.addEventListener("click", () => {
 })
 
 window.onload = function () {
-    localStorage.removeItem("edit");
     localStorage.removeItem("signin");
     if (localStorage.getItem("signup")) {
         console.log(localStorage.getItem("signup"));
