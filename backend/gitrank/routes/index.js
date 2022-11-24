@@ -1,10 +1,41 @@
+const e = require('express');
 var express = require('express');
 var router = express.Router();
-
-
+var privateInfo=require('./privateInfo');
+let gitFunc=require('./gitScore');
 let DB_users=[]; //{ID: , PW: , GITHUBID: ,SCORE,INTERESTS}
 let DB_profile=[];
+let session_login=[];
 
+let Octo=require('octokit');
+
+const octokit = new Octo.Octokit({
+    auth: privateInfo.APIKEY
+  })
+
+function getUserFromDBByUserName(username){
+  let uidx=-1;
+  for(let i=0;i<DB_users.length;i++){
+    if(DB_users[i].ID===username){
+      uidx=i;
+      break;
+    }
+  }
+  if(uidx===-1)return null;
+  return DB_users[uidx];
+}
+
+function getProfileFromDBByUserName(username){
+  let uidx=-1;
+  for(let i=0;i<DB_profile.length;i++){
+    if(DB_profile[i].ID===username){
+      uidx=i;
+      break;
+    }
+  }
+  if(uidx===-1)return null;
+  return DB_profile[uidx];
+}
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -54,7 +85,7 @@ router.post('/user/signup',(req,res)=>{
       IMG:"none",
       INTERESTS:Object.values(body.INTERESTS),
       COMMENT:"",
-      SCORE:"",
+      SCORE:0,
       SKILLS:Object.values(body.SKILLS)
     }
     DB_users.push(userdata);
@@ -129,8 +160,22 @@ router.get('/users/skills/:skill',(req,res)=>{
   res.status(200).json(ret);
 })
 
-router.post('/userpage/edit/:uid',(res,req)=>{
-  
+router.post('/userpage/edit/:username',(res,req)=>{
+  let uId=req.params.username;
+  let profile=DB_profile.filter(e=>e.ID===uId);
+  DB_profile=DB_profile.filter(e=>e.ID!==uId);
+  let body=req.body;
+  profile.IMG=body.IMG;
+  profile.INTERESTS=Object.values(body.INTERESTS);
+  profile.COMMENT=body.COMMENT;
+
+  profile.SKILLS=Object.values(body.SKILLS);
+
+  DB_profile.push(profile);
+  res.status(200).json({
+    profile
+  })
+
 })
 router.get('/userpage/:userID',(req,res)=>{
   let uID=req.params.userID;
@@ -146,4 +191,104 @@ router.get('/userpage/:userID',(req,res)=>{
     res.status(200).json(ret[0]);
   }
 })
+
+router.get('/score/:username',async (req,res)=>{
+  let username=req.params.username;
+  
+  let uidx=-1;
+  for(let i=0;i<DB_users.length;i++){
+    if(DB_users[i].ID===username){
+      uidx=i;
+      break;
+    }
+  }
+  if(uidx===-1){
+    res.status(404).json({
+      result:"error"
+    })
+  }
+  let gitID=DB_users[uidx].GITHUB;
+  console.log(gitID);
+  let score=await gitFunc.getScore(gitID);
+  DB_users[uidx].SCORE=score;
+  for(let i=0;i<DB_profile.length;i++){
+    if(DB_profile[i].ID===username){
+      uidx=i;
+      break;
+    }
+  }
+  DB_profile[uidx].SCORE=score;
+  
+  res.status(200).json({
+    gitscore:score
+  });
+})
+
+router.get('/user/signin/:username/:password',(req,res)=>{
+  let username=req.params.username;
+  let password=req.params.password;
+  let checkDB=getUserFromDBByUserName(username);
+  if(session_login.includes(username)){
+    res.status(404).json({
+      result:"error:already singedin"
+    })
+  }
+  else if(checkDB==null){
+    res.status(404).json({
+      result:"error:no such user"
+    })
+  }
+  else{
+    if (checkDB.PW===password){
+      session_login.push(username);
+      res.status(200).json({
+        result:"success"
+      })
+    }
+    else{
+      res.status(404).json({
+        result:"error:password doesn't match"
+      })
+    }
+  }
+})
+router.get('/user/signout/:username',(req,res)=>{
+  let username=req.params.username;
+  let checkDB=getUserFromDBByUserName(username);
+  if(checkDB==null){
+    res.status(404).json({
+      result:"error:no such user"
+    })
+  }
+  else{
+    
+      session_login=session_login.filter(e=>e!==username);
+      res.status(200).json({
+        result:"success"
+      })
+    
+
+  }
+
+})
+router.get('/users/signingin',(req,res)=>{
+  res.status(200).json({
+    result:session_login
+  })
+})
+router.get('/user/signingin/:username',(req,res)=>{
+  let username=req.params.username;
+  if(session_login.includes(username)===true){
+    res.status(200).json({
+      result:"success"
+    })
+  }
+  else{
+    res.status(404).json({
+      result:"error:no such user sginined"
+    })
+  }
+})
 module.exports = router;
+
+
