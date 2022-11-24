@@ -1,5 +1,5 @@
-Octo=require('octokit');
+let APIKEY='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'
 
-const octokit = new Octo.Octokit({
-    auth: 'YOUR-TOKEN'
-  })
+//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 이푸ㅡㅇ원
+
+//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 내거
