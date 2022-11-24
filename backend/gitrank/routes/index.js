@@ -266,8 +266,7 @@ router.get('/user/signout/:username',(req,res)=>{
       res.status(200).json({
         result:"success"
       })
-    
-
+  
   }
 
 })
