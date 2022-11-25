@@ -70,7 +70,26 @@ window.onload = function () {
     }
     if (localStorage.getItem("signin")) {
         user = JSON.parse(localStorage.getItem("signin"));
-        console.log(user);
+
+        let tr = document.createElement("tr");
+        let th = document.createElement("th");
+        th.scope = "row";
+        th.textContent = (++rank).toString();
+        tr.appendChild(th);
+        let td1 = document.createElement("td");
+        let td2 = document.createElement("td");
+        let td3 = document.createElement("td");
+        td1.textContent = user.ID;
+        tr.appendChild(td1);
+        
+        td2.textContent = user.INTERESTS
+        tr.appendChild(td2);
+        td3.textContent = user.SKILLS
+
+        tr.appendChild(td3);
+
+        let tbody = document.querySelector("#rank_table tbody");
+        tbody.appendChild(tr);
     }
     fetch("http://localhost:3000/users/scoreDescOrder", {
         method: 'GET',
@@ -79,6 +98,7 @@ window.onload = function () {
         },
     }).then(data => data.json())
         .then(json => {
+
             server_users = json;
             num = json.length
             console.log(server_users)
