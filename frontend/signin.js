@@ -50,7 +50,7 @@ login.addEventListener("click", () => {
         },
     }).then(data => data.json())
         .then(json => {
-            console.log(json)
+            console.log(json.result)
         });
     // Move
     localStorage.setItem("signin", JSON.stringify(user));
@@ -70,7 +70,6 @@ window.onload = function () {
         },
     }).then(data => data.json())
         .then(json => {
-            use = json;
             console.log(json)
         });
 }
