@@ -21,6 +21,7 @@ window.onload = function () {
     })
         .then(res => res.json())
         .then(user => {
+            console.log("yes" + user);
             span_git.innerHTML = user.GITHUB;
             span_itr.innerHTML = user.INTERESTS;
             if (user.CONTACT) {

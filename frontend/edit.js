@@ -40,7 +40,10 @@ done.addEventListener("click", () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(edit)
-    })
+    }).then(data => data.json())
+        .then(json => {
+            alert(json);
+        })
 
     localStorage.setItem("signup", JSON.stringify(edit));
     localStorage.setItem("signin", JSON.stringify(edit));
@@ -70,7 +73,7 @@ window.onload = function () {
     }
     let url = "http://localhost:3000/userpage/" + user.ID;
     fetch(url, {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -78,6 +81,7 @@ window.onload = function () {
         .then(res => res.json())
         .then(user => {
             alert("Hi");
+            console.log(user);
             input_git.innerHTML = user.GITHUB;
             input_itr.innerHTML = user.INTERESTS;
             if (user.CONTACT) {

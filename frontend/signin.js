@@ -92,15 +92,14 @@ window.onload = function () {
         .then(json => {
             console.log(json)
         });
-    fetch("http://localhost:3000/user/signout/" + sign_user.ID, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then(data => data.json())
-        .then(json => {
-            console.log(json)
-        });
-    localStorage.removeItem("signin")
+    // fetch("http://localhost:3000/user/signout/" + sign_user.ID, {
+    //     method: "GET",
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    // }).then(data => data.json())
+    //     .then(json => {
+    //         console.log(json)
+    //     });
 }
 // =========================================================================
