@@ -15,9 +15,11 @@ window.onload = function () {
         let td3 = document.createElement("td");
         td1.textContent = user.ID;
         tr.appendChild(td1);
+        
         td2.textContent = user.INTERESTS
         tr.appendChild(td2);
         td3.textContent = user.SKILLS
+
         tr.appendChild(td3);
 
         let tbody = document.querySelector("#rank_table tbody");
