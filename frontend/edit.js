@@ -47,7 +47,8 @@ done.addEventListener("click", () => {
         "SCORE": 0
     }
     console.log(edit);
-    let url = "http://localhost/userpage/edit/" + user.ID;
+    let url = "http://localhost:3000/userpage/edit/" + user.ID;
+    console.log(url);
     fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -83,13 +84,9 @@ window.onload = function () {
         user = JSON.parse(localStorage.getItem("signin"));
         console.log(user);
         // input_git.value = user.GITHUB;
-
         // input_itr.value = user.INTERESTS;
-
         // input_contact.value = user.CONTACT;
-
         // input_comment.value = user.COMMENT;
-
         // img.src = user.IMG;
     }
     let url = "http://localhost:3000/userpage/" + user.ID;
@@ -99,20 +96,22 @@ window.onload = function () {
             'Content-Type': 'application/json',
         },
     })
-        .then(res => res.json())
+        .then(res => (res.json()))
         .then(json => {
-            alert("Hi");
-            console.log(json);
-            input_git.innerHTML = json.GITHUB;
-            input_itr.innerHTML = json.INTERESTS;
-            if (json.CONTACT) {
-                input_contact.innerHTML = json.CONTACT;
+            user = JSON.stringify(json);
+            console.log("1:" + user);
+            user = JSON.parse(user);
+            console.log(user);
+            input_git.value = user.GITHUB;
+            input_itr.value = user.INTERESTS;
+            if (user.CONTACT) {
+                input_contact.value = user.CONTACT;
             }
-            if (json.COMMENT) {
-                input_comment.innerHTML = json.COMMENT;
+            if (user.COMMENT) {
+                input_comment.value = user.COMMENT;
             }
-            if (json.IMG !== "none") {
-                img.src = json.IMG;
+            if (user.IMG !== "none") {
+                img.src = user.IMG;
             }
         })
 

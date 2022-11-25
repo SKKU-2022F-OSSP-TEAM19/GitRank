@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mysql = require("mysql");
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 let corsOptions = {
   origin: '*',      // 출처 허용 옵션
@@ -23,7 +24,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+app.use(bodyParser.json({ limit: 5000000 }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -46,7 +47,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(cors(corsOptions))
-
+app.use(express.json({ limit: '100mb' }));
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development

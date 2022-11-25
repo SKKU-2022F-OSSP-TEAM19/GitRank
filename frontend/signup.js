@@ -41,11 +41,11 @@ signup.addEventListener("click", () => {
 
     let front = document.getElementById("itr_frontend");
     if (front.checked) {
-        itr.push("FRONTEND");
+        itr.push("Frontend");
     }
     let back = document.getElementById("itr_backend");
     if (back.checked) {
-        itr.push("BACKEND");
+        itr.push("Backend");
     }
     let ai = document.getElementById("itr_ai");
     if (ai.checked) {
@@ -53,7 +53,7 @@ signup.addEventListener("click", () => {
     }
     let db = document.getElementById("itr_database");
     if (db.checked) {
-        itr.push("DATABASE");
+        itr.push("Database");
     }
     let npl = document.getElementById("itr_npl");
     if (npl.checked) {
@@ -61,35 +61,35 @@ signup.addEventListener("click", () => {
     }
     let ml = document.getElementById("itr_machine");
     if (ml.checked) {
-        itr.push("MACHINE LEARNING");
+        itr.push("Machine Learning");
     }
     let nn = document.getElementById("itr_neural");
     if (nn.checked) {
-        itr.push("NEURAL NETWORK");
+        itr.push("Neural Network");
     }
     let al = document.getElementById("itr_algorithm");
     if (al.checked) {
-        itr.push("ALGORITHM");
+        itr.push("Algorithm");
     }
     let mining = document.getElementById("itr_mining");
     if (mining.checked) {
-        itr.push("DATA MINING");
+        itr.push("Data Mining");
     }
     let sec = document.getElementById("itr_security");
     if (sec.checked) {
-        itr.push("SECURITY");
+        itr.push("Security");
     }
     let em = document.getElementById("itr_embeded");
     if (em.checked) {
-        itr.push("EMBEDED SYSTEM");
+        itr.push("Embeded System");
     }
     let mob = document.getElementById("itr_mobile");
     if (mob.checked) {
-        itr.push("MOBILE APPLICATION");
+        itr.push("Mobile Application");
     }
     let web = document.getElementById("itr_web");
     if (web.checked) {
-        itr.push("WEB PROGRAMMING");
+        itr.push("Web Programming");
     }
     let vr = document.getElementById("itr_vr");
     if (vr.checked) {
@@ -101,11 +101,11 @@ signup.addEventListener("click", () => {
     }
     let net = document.getElementById("itr_network");
     if (net.checked) {
-        itr.push("NETWORK");
+        itr.push("Network");
     }
     let rev = document.getElementById("itr_reverse");
     if (rev.checked) {
-        itr.push("REVERSE ENGINEERING");
+        itr.push("Reverse Engineering");
     }
 
     if (itr.length < 1) {
@@ -117,15 +117,15 @@ signup.addEventListener("click", () => {
     skills = [];
     let py = document.getElementById("skill_python");
     if (py.checked) {
-        skills.push("PYTHON");
+        skills.push("Python");
     }
     let java = document.getElementById("skill_java");
     if (java.checked) {
-        skills.push("JAVA");
+        skills.push("Java");
     }
     let js = document.getElementById("skill_js");
     if (js.checked) {
-        skills.push("JAVASCRIPT");
+        skills.push("JavaScript");
     }
     let cpp = document.getElementById("skill_cpp");
     if (cpp.checked) {
@@ -137,7 +137,7 @@ signup.addEventListener("click", () => {
     }
     let ts = document.getElementById("skill_ts");
     if (ts.checked) {
-        skills.push("TYPESCRIPT");
+        skills.push("TypeScript");
     }
     let c = document.getElementById("skill_c");
     if (c.checked) {
@@ -145,15 +145,15 @@ signup.addEventListener("click", () => {
     }
     let go = document.getElementById("skill_go");
     if (go.checked) {
-        skills.push("GO");
+        skills.push("Go");
     }
     let shell = document.getElementById("skill_shell");
     if (shell.checked) {
-        skills.push("SHELL");
+        skills.push("Shell");
     }
     let ruby = document.getElementById("skill_ruby");
     if (ruby.checked) {
-        skills.push("RUBY");
+        skills.push("Ruby");
     }
     let cs = document.getElementById("skill_c#");
     if (cs.checked) {
@@ -164,8 +164,8 @@ signup.addEventListener("click", () => {
         return;
     }
     // 6. Test
-    let str = "user_id : " + user_id + "\nuser_pw : " + user_pw + "\nuser_github : " + user_git + "\nInterests : " + itr + "\nSkilss : " + skills;
-    alert(str);
+    //let str = "user_id : " + user_id + "\nuser_pw : " + user_pw + "\nuser_github : " + user_git + "\nInterests : " + itr + "\nSkilss : " + skills;
+    //alert(str);
     // 7. move to rank.html
 
     let user = {

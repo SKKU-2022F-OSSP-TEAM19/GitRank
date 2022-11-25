@@ -84,12 +84,14 @@ router.post('/user/signup', (req, res) => {
     };
     let _prof = {
       ID: body.ID,
+      PW: body.PW,
       GITHUB: body.GITHUB,
       IMG: "none",
       INTERESTS: Object.values(body.INTERESTS),
       COMMENT: "",
       SCORE: 0,
-      SKILLS: Object.values(body.SKILLS)
+      SKILLS: Object.values(body.SKILLS),
+      CONTACT: ""
     }
     DB_users.push(userdata);
     DB_profile.push(_prof);
@@ -119,6 +121,9 @@ router.get('/users/scoreAscOrder', (req, res) => {
     else return -1;
   })
   res.status(200).json(ret);
+})
+router.get('/userpage/list', (req, res) => {
+  res.status(200).json(DB_profile);
 })
 router.get('/users/interests/:interest', (req, res) => {
   // 유저 정보를 score 기준으로 오름차순 정렬함.
@@ -171,14 +176,36 @@ router.get('/users/skills/:skill', (req, res) => {
   res.status(200).json(ret);
 })
 
-router.post('/userpage/edit/:userID', (res, req) => {
-  let uId = req.params.userID;
-  let profile = DB_users.filter(e => e.ID === uId);
+// router.post('/userpage/edit/:username', (res, req) => {
+//   let uId = req.params.username;
+//   let profile = DB_users.filter(e => e.ID === uId)[0];
+//   DB_users = DB_users.filter(e => e.ID !== uId);
+//   let body = req.body;
+//   profile.IMG = body.IMG;
+//   profile.INTERESTS = Object.values(body.INTERESTS);
+//   profile.COMMENT = body.COMMENT;
+
+//   profile.SKILLS = Object.values(body.SKILLS);
+
+//   DB_users.push(profile);
+//   res.status(200).json({
+//     profile
+//   })
+
+// })
+router.post('/userpage/edit/:username', (req, res) => {
+  //let uId=body.ID;
+  //console.log(body);
+  let uId = req.params.username;
+  let profile = DB_users.filter(e => e.ID === uId)[0];
   DB_users = DB_users.filter(e => e.ID !== uId);
+
   let body = req.body;
+
   profile.IMG = body.IMG;
   profile.INTERESTS = body.INTERESTS;
   profile.COMMENT = body.COMMENT;
+  profile.CONTACT = body.CONTACT;
 
   profile.SKILLS = body.SKILLS;
 
@@ -186,7 +213,6 @@ router.post('/userpage/edit/:userID', (res, req) => {
   res.status(200).json({
     profile
   })
-
 })
 router.get('/userpage/:userID', (req, res) => {
   let uID = req.params.userID;
