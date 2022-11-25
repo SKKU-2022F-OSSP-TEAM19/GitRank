@@ -70,10 +70,6 @@ login.addEventListener("click", () => {
                 return;
             }
         });
-    // Move
-    //localStorage.setItem("signin", JSON.stringify(user));
-    //let link = 'rank.html';
-    //location.href = link;
 })
 
 window.onload = function () {

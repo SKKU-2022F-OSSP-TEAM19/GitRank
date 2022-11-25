@@ -4,7 +4,6 @@ let user_git;
 let itr = [];
 let skills = [];
 
-
 // Signup.html
 // =========================================================================
 let signup = document.getElementById("btn_signup");
@@ -163,10 +162,6 @@ signup.addEventListener("click", () => {
         alert("Please Check your Programming Language");
         return;
     }
-    // 6. Test
-    //let str = "user_id : " + user_id + "\nuser_pw : " + user_pw + "\nuser_github : " + user_git + "\nInterests : " + itr + "\nSkilss : " + skills;
-    //alert(str);
-    // 7. move to rank.html
 
     let user = {
         "ID": user_id,
@@ -182,6 +177,7 @@ signup.addEventListener("click", () => {
     localStorage.setItem("signup", JSON.stringify(user));
     localStorage.setItem("signin", JSON.stringify(user));
 
+    // POST to /user/signup
     fetch('http://localhost:3000/user/signup', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
