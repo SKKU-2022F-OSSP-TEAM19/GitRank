@@ -1,16 +1,29 @@
 let user;
-let edit;
+let edit = {
+    "ID": "",
+    "PW": "",
+    "GITHUB": "",
+    "INTERESTS": "",
+    "CONTACT": "",
+    "COMMENT": "",
+    "IMG": "",
+    "SKILLS": "",
+    "SCORE": 0
+}
 let done = document.getElementById("btn_done");
 done.addEventListener("click", () => {
     let input_git = document.getElementById("my_github");
+    user = JSON.parse(localStorage.getItem("signin"));
     user_git = input_git.value;
     if (user_git.length) {
+        edit.GITHUB = user_git;
         user.GITHUB = user_git;
     }
 
     let input_itr = document.getElementById("my_interests");
     user_itr = input_itr.value;
     if (user_itr.length) {
+        edit.INTERESTS = user_itr;
         user.INTERESTS = user_itr;
     }
     let input_con = document.getElementById("my_contact");
@@ -21,7 +34,6 @@ done.addEventListener("click", () => {
 
     let img = document.getElementById("my_img");
     let img_src = img.src;
-
 
     edit = {
         "ID": user.ID,
@@ -34,35 +46,75 @@ done.addEventListener("click", () => {
         "SKILLS": user.SKILLS,
         "SCORE": 0
     }
+    console.log(edit);
+    let url = "http://localhost/userpage/edit/" + user.ID;
+    fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(edit)
+    }).then(data => (data.json()))
+        .then(json => {
+            if (json.result) {
+                alert(json.result);
+                return;
+            }
+            else {
+                localStorage.setItem("signup", JSON.stringify(edit));
+                localStorage.setItem("signin", JSON.stringify(edit));
+                let link = 'myprofile.html';
+                location.href = link;
+            }
+        })
+
     localStorage.setItem("signup", JSON.stringify(edit));
     localStorage.setItem("signin", JSON.stringify(edit));
-    let link = 'myprofile.html';
-    location.href = link;
+    //let link = 'myprofile.html';
+    //location.href = link;
 
 })
 
 window.onload = function () {
+    let input_git = document.getElementById("my_github");
+    let input_itr = document.getElementById("my_interests");
+    let input_contact = document.getElementById("my_contact");
+    let input_comment = document.getElementById("comment");
+    let img = document.getElementById("my_img");
     if (localStorage.getItem("signin")) {
         user = JSON.parse(localStorage.getItem("signin"));
         console.log(user);
-        let input_git = document.getElementById("my_github");
-        input_git.value = user.GITHUB;
+        // input_git.value = user.GITHUB;
 
-        let input_itr = document.getElementById("my_interests");
-        input_itr.value = user.INTERESTS;
+        // input_itr.value = user.INTERESTS;
 
-        let input_contact = document.getElementById("my_contact");
-        input_contact.value = user.CONTACT;
+        // input_contact.value = user.CONTACT;
 
-        let input_comment = document.getElementById("comment");
-        input_comment.value = user.COMMENT;
+        // input_comment.value = user.COMMENT;
 
-        let img = document.getElementById("my_img");
-        img.src = user.IMG;
+        // img.src = user.IMG;
     }
-    else {
-        alert("My information is not being received.")
-    }
+    let url = "http://localhost:3000/userpage/" + user.ID;
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(res => res.json())
+        .then(json => {
+            alert("Hi");
+            console.log(json);
+            input_git.innerHTML = json.GITHUB;
+            input_itr.innerHTML = json.INTERESTS;
+            if (json.CONTACT) {
+                input_contact.innerHTML = json.CONTACT;
+            }
+            if (json.COMMENT) {
+                input_comment.innerHTML = json.COMMENT;
+            }
+            if (json.IMG !== "none") {
+                img.src = json.IMG;
+            }
+        })
 
 }
 function readImage(input) {

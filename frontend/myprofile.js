@@ -1,5 +1,6 @@
+let user;
+let profile;
 window.onload = function () {
-    let user;
     let span_git = document.getElementById("user_github");
     let span_itr = document.getElementById("user_interests");
     let span_con = document.getElementById("user_contact");
@@ -10,15 +11,30 @@ window.onload = function () {
     if (localStorage.getItem("signin")) {
         user = JSON.parse(localStorage.getItem("signin"));
         console.log(user);
-
-        span_git.innerHTML = user.GITHUB;
-        span_itr.innerHTML = user.INTERESTS;
-        span_con.innerHTML = user.CONTACT;
-        span_com.innerHTML = user.COMMENT;
-        span_contribution.innerHTML = user.SKILLS;
-        img.src = user.IMG;
-
-
+        let url = "http://localhost:3000/userpage/" + user.ID;
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => res.json())
+            .then(json => {
+                //alert("Hi");
+                console.log(json);
+                span_git.innerHTML = json.GITHUB;
+                span_itr.innerHTML = json.INTERESTS;
+                if (json.CONTACT) {
+                    span_con.innerHTML = json.CONTACT;
+                }
+                if (json.COMMENT) {
+                    span_com.innerHTML = json.COMMENT;
+                }
+                span_contribution.innerHTML = json.SKILLS;
+                if (json.IMG !== "none") {
+                    img.src = json.IMG;
+                }
+            })
     }
 
 }

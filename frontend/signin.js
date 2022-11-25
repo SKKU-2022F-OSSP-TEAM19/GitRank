@@ -31,6 +31,7 @@ login.addEventListener("click", () => {
         "SCORE": 0
 
     }
+    /*
     if (localStorage.getItem("signup")) {
         user = JSON.parse(localStorage.getItem("signup"));
         if (user_id !== user.ID) {
@@ -41,30 +42,58 @@ login.addEventListener("click", () => {
             alert("Invalid PW");
             return;
         }
-    }
+    }*/
     let url = "http://localhost:3000/user/signin/" + user_id + "/" + user_pw;
-    // fetch(url, {
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    // }).then(data => data.json())
-    //     .then(json => {
-    //         console.log(json.result)
-    //     });
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(data => data.json())
+        .then(json => {
+            let state = json.result;
+            if (state === "success") {
+                localStorage.setItem("signin", JSON.stringify(user));
+                let link = 'rank.html';
+                location.href = link;
+            }
+            else if (state === "error:no such user") {
+                alert(state);
+                return;
+            }
+            else if (state === "error:already singedin") {
+                alert("error:already signedin")
+                return;
+            }
+            else if (state === "error:password doesn't match") {
+                alert(state);
+                return;
+            }
+        });
     // Move
-    localStorage.setItem("signin", JSON.stringify(user));
-    let link = 'rank.html';
-    location.href = link;
+    //localStorage.setItem("signin", JSON.stringify(user));
+    //let link = 'rank.html';
+    //location.href = link;
 })
 
 window.onload = function () {
-    localStorage.removeItem("signin");
+    if (localStorage.getItem("signin")) {
+        sign_user = localStorage.getItem("signin");
+    }
     if (localStorage.getItem("signup")) {
         console.log(localStorage.getItem("signup"));
     }
-    // fetch("http://localhost:3000/users/scoreDescOrder", {
-    //     method: 'GET',
+    fetch("http://localhost:3000/users/scoreDescOrder", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(data => data.json())
+        .then(json => {
+            console.log(json)
+        });
+    // fetch("http://localhost:3000/user/signout/" + sign_user.ID, {
+    //     method: "GET",
     //     headers: {
     //         'Content-Type': 'application/json',
     //     },
