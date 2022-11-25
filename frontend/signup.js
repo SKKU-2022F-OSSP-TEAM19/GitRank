@@ -182,7 +182,7 @@ signup.addEventListener("click", () => {
     localStorage.setItem("signup", JSON.stringify(user));
     localStorage.setItem("signin", JSON.stringify(user));
 
-    fetch('http://127.0.0.1:3000/user/signup', {
+    fetch('http://localhost:3000/user/signup', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)
