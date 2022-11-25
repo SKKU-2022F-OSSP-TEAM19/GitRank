@@ -117,6 +117,9 @@ router.get('/users/scoreAscOrder',(req,res)=>{
   })
   res.status(200).json(ret);
 })
+router.get('/userpage/list',(req,res)=>{
+  res.status(200).json(DB_profile);
+})
 router.get('/users/interests/:interest',(req,res)=>{
   // 유저 정보를 score 기준으로 오름차순 정렬함.
   
@@ -160,11 +163,15 @@ router.get('/users/skills/:skill',(req,res)=>{
   res.status(200).json(ret);
 })
 
-router.post('/userpage/edit/:username',(res,req)=>{
+router.post('/userpage/edit/:username',(req,res)=>{
+    //let uId=body.ID;
+  //console.log(body);
   let uId=req.params.username;
-  let profile=DB_profile.filter(e=>e.ID===uId);
+  let profile=DB_profile.filter(e=>e.ID===uId)[0];
   DB_profile=DB_profile.filter(e=>e.ID!==uId);
-  let body=req.body;
+  
+  let body=req.body; 
+
   profile.IMG=body.IMG;
   profile.INTERESTS=Object.values(body.INTERESTS);
   profile.COMMENT=body.COMMENT;
