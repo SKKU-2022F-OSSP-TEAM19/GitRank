@@ -1,16 +1,29 @@
 let user;
-let edit;
+let edit = {
+    "ID": "",
+    "PW": "",
+    "GITHUB": "",
+    "INTERESTS": "",
+    "CONTACT": "",
+    "COMMENT": "",
+    "IMG": "",
+    "SKILLS": "",
+    "SCORE": 0
+}
 let done = document.getElementById("btn_done");
 done.addEventListener("click", () => {
     let input_git = document.getElementById("my_github");
+    user = JSON.parse(localStorage.getItem("signin"));
     user_git = input_git.value;
     if (user_git.length) {
+        edit.GITHUB = user_git;
         user.GITHUB = user_git;
     }
 
     let input_itr = document.getElementById("my_interests");
     user_itr = input_itr.value;
     if (user_itr.length) {
+        edit.INTERESTS = user_itr;
         user.INTERESTS = user_itr;
     }
     let input_con = document.getElementById("my_contact");
@@ -21,7 +34,6 @@ done.addEventListener("click", () => {
 
     let img = document.getElementById("my_img");
     let img_src = img.src;
-
 
     edit = {
         "ID": user.ID,
@@ -40,15 +52,24 @@ done.addEventListener("click", () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(edit)
-    }).then(data => data.json())
+    }).then(data => (data.json()))
         .then(json => {
-            alert(json);
+            if (json.result) {
+                alert(json.result);
+                return;
+            }
+            else {
+                localStorage.setItem("signup", JSON.stringify(edit));
+                localStorage.setItem("signin", JSON.stringify(edit));
+                let link = 'myprofile.html';
+                location.href = link;
+            }
         })
 
     localStorage.setItem("signup", JSON.stringify(edit));
     localStorage.setItem("signin", JSON.stringify(edit));
-    let link = 'myprofile.html';
-    location.href = link;
+    //let link = 'myprofile.html';
+    //location.href = link;
 
 })
 
@@ -61,15 +82,15 @@ window.onload = function () {
     if (localStorage.getItem("signin")) {
         user = JSON.parse(localStorage.getItem("signin"));
         console.log(user);
-        input_git.value = user.GITHUB;
+        // input_git.value = user.GITHUB;
 
-        input_itr.value = user.INTERESTS;
+        // input_itr.value = user.INTERESTS;
 
-        input_contact.value = user.CONTACT;
+        // input_contact.value = user.CONTACT;
 
-        input_comment.value = user.COMMENT;
+        // input_comment.value = user.COMMENT;
 
-        img.src = user.IMG;
+        // img.src = user.IMG;
     }
     let url = "http://localhost:3000/userpage/" + user.ID;
     fetch(url, {
@@ -79,19 +100,19 @@ window.onload = function () {
         },
     })
         .then(res => res.json())
-        .then(user => {
+        .then(json => {
             alert("Hi");
-            console.log(user);
-            input_git.innerHTML = user.GITHUB;
-            input_itr.innerHTML = user.INTERESTS;
-            if (user.CONTACT) {
-                input_contact.innerHTML = user.CONTACT;
+            console.log(json);
+            input_git.innerHTML = json.GITHUB;
+            input_itr.innerHTML = json.INTERESTS;
+            if (json.CONTACT) {
+                input_contact.innerHTML = json.CONTACT;
             }
-            if (user.COMMENT) {
-                input_comment.innerHTML = user.COMMENT;
+            if (json.COMMENT) {
+                input_comment.innerHTML = json.COMMENT;
             }
-            if (user.IMG !== "none") {
-                img.src = user.IMG;
+            if (json.IMG !== "none") {
+                img.src = json.IMG;
             }
         })
 

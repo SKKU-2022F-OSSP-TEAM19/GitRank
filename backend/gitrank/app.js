@@ -4,6 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mysql = require("mysql");
+const cors = require('cors');
+
+let corsOptions = {
+  origin: '*',      // 출처 허용 옵션
+  credential: true, // 사용자 인증이 필요한 리소스(쿠키 등) 접근
+}
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -24,12 +30,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.all('/*', function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  res.header("Access-Control-Allow-Methods", "*")
-  next();
-});
+// app.all('/*', function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Content-Type");
+//   res.header("Access-Control-Allow-Methods", "*")
+//   next();
+// });
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
@@ -38,6 +44,8 @@ app.use('/', indexRouter);
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
+app.use(cors(corsOptions))
 
 // error handler
 app.use(function (err, req, res, next) {

@@ -171,16 +171,16 @@ router.get('/users/skills/:skill', (req, res) => {
   res.status(200).json(ret);
 })
 
-router.post('/userpage/edit/:username', (res, req) => {
-  let uId = req.params.username;
+router.post('/userpage/edit/:userID', (res, req) => {
+  let uId = req.params.userID;
   let profile = DB_users.filter(e => e.ID === uId);
   DB_users = DB_users.filter(e => e.ID !== uId);
   let body = req.body;
   profile.IMG = body.IMG;
-  profile.INTERESTS = Object.values(body.INTERESTS);
+  profile.INTERESTS = body.INTERESTS;
   profile.COMMENT = body.COMMENT;
 
-  profile.SKILLS = Object.values(body.SKILLS);
+  profile.SKILLS = body.SKILLS;
 
   DB_users.push(profile);
   res.status(200).json({
