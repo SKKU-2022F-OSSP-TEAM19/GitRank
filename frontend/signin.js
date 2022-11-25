@@ -42,6 +42,16 @@ login.addEventListener("click", () => {
             return;
         }
     }
+    let url = "http://localhost:3000/user/signin/" + user_id + "/" + user_pw;
+    // fetch(url, {
+    //     method: 'GET',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    // }).then(data => data.json())
+    //     .then(json => {
+    //         console.log(json.result)
+    //     });
     // Move
     localStorage.setItem("signin", JSON.stringify(user));
     let link = 'rank.html';
@@ -53,5 +63,14 @@ window.onload = function () {
     if (localStorage.getItem("signup")) {
         console.log(localStorage.getItem("signup"));
     }
+    // fetch("http://localhost:3000/users/scoreDescOrder", {
+    //     method: 'GET',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    // }).then(data => data.json())
+    //     .then(json => {
+    //         console.log(json)
+    //     });
 }
 // =========================================================================
