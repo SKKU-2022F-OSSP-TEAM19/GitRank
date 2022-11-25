@@ -182,15 +182,31 @@ signup.addEventListener("click", () => {
     localStorage.setItem("signup", JSON.stringify(user));
     localStorage.setItem("signin", JSON.stringify(user));
 
-    // fetch('http://localhost:3000/user/signup', {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(user)
-    // }).then(res => (res.json()))
-    //     .then(json => console.log(json))
+    fetch('http://localhost:3000/user/signup', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user)
+    }).then(res => (res.json()))
+        .then(json => {
+            let state = json.result;
+            if (state === "success") {
+                localStorage.setItem("signin", JSON.stringify(user));
+                flag = 1;
+            }
+            else if (state === "error: same ID") {
+                alert(state);
+                return;
+            }
+            else if (state === "error: same GITHUB") {
+                alert(state)
+                return;
+            }
+        })
 
-    let link = 'rank.html';
-    location.href = link;
+    if (localStorage.getItem("signin")) {
+        let link = "rank.html";
+        location.href = link;
+    }
 })
 // =========================================================================
 

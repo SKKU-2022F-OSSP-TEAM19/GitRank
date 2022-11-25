@@ -34,6 +34,14 @@ done.addEventListener("click", () => {
         "SKILLS": user.SKILLS,
         "SCORE": 0
     }
+    console.log(edit);
+    let url = "http://localhost/userpage/edit/" + user.ID;
+    fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(edit)
+    })
+
     localStorage.setItem("signup", JSON.stringify(edit));
     localStorage.setItem("signin", JSON.stringify(edit));
     let link = 'myprofile.html';
@@ -42,27 +50,46 @@ done.addEventListener("click", () => {
 })
 
 window.onload = function () {
+    let input_git = document.getElementById("my_github");
+    let input_itr = document.getElementById("my_interests");
+    let input_contact = document.getElementById("my_contact");
+    let input_comment = document.getElementById("comment");
+    let img = document.getElementById("my_img");
     if (localStorage.getItem("signin")) {
         user = JSON.parse(localStorage.getItem("signin"));
         console.log(user);
-        let input_git = document.getElementById("my_github");
         input_git.value = user.GITHUB;
 
-        let input_itr = document.getElementById("my_interests");
         input_itr.value = user.INTERESTS;
 
-        let input_contact = document.getElementById("my_contact");
         input_contact.value = user.CONTACT;
 
-        let input_comment = document.getElementById("comment");
         input_comment.value = user.COMMENT;
 
-        let img = document.getElementById("my_img");
         img.src = user.IMG;
     }
-    else {
-        alert("My information is not being received.")
-    }
+    let url = "http://localhost:3000/userpage/" + user.ID;
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(res => res.json())
+        .then(user => {
+            alert("Hi");
+            input_git.innerHTML = user.GITHUB;
+            input_itr.innerHTML = user.INTERESTS;
+            if (user.CONTACT) {
+                input_contact.innerHTML = user.CONTACT;
+            }
+            if (user.COMMENT) {
+                input_comment.innerHTML = user.COMMENT;
+            }
+            if (user.IMG !== "none") {
+                img.src = user.IMG;
+            }
+        })
 
 }
 function readImage(input) {
