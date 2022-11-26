@@ -2,16 +2,21 @@ const e = require('express');
 var express = require('express');
 var router = express.Router();
 var privateInfo=require('./privateInfo');
+
+let dbFunc=require('./dbFuncs');
 let gitFunc=require('./gitScore');
 let DB_users=[]; //{ID: , PW: , GITHUBID: ,SCORE,INTERESTS}
 let DB_profile=[];
 let session_login=[];
 
-let Octo=require('octokit');
+// let Octo=require('octokit');
 
-const octokit = new Octo.Octokit({
-    auth: privateInfo.APIKEY
-  })
+// const octokit = new Octo.Octokit({
+//     auth: privateInfo.APIKEY
+//   })
+
+
+dbFuncs.loadDatas();
 
 function getUserFromDBByUserName(username){
   let uidx=-1;
@@ -93,6 +98,7 @@ router.post('/user/signup',(req,res)=>{
     DB_users.push(userdata);
     DB_profile.push(_prof);
     //console.log(DB_users);
+    dbFuncs.saveDatas(true,true);
     res.status(200).json({
       result:"result: success"
     })
@@ -194,6 +200,7 @@ router.post('/userpage/edit/:username',(req,res)=>{
   //userInfo.SKILLS=body.SKILLS;
   DB_profile.push(profile);
   //DB_users.push(userInfo);
+  dbFuncs.saveDatas(false,true);
   res.status(200).json({
     profile
   })
@@ -228,6 +235,7 @@ router.get('/score/:username',async (req,res)=>{
     userPageInfo[0].SCORE=score;
     DB_profile=DB_profile.filter(e=>e.ID!==username);
     DB_profile.push(userPageInfo[0]);
+    dbFuncs.saveDatas(false,true);
     res.status(200).json({
       gitscore:score
     });
