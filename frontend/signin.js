@@ -77,16 +77,29 @@ window.onload = function () {
         sign_user = localStorage.getItem("signin");
     }
     if (localStorage.getItem("signup")) {
-        console.log(localStorage.getItem("signup"));
+        //console.log(localStorage.getItem("signup"));
     }
-    fetch("http://localhost:3000/users/scoreDescOrder", {
+    fetch("http://localhost:3000/users/signingin", {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
     }).then(data => data.json())
         .then(json => {
-            console.log(json)
+            if (json.result[0]) {
+                fetch("http://localhost:3000/user/signout/" + json.result[0], {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }).then(data => data.json())
+                    .then(json => {
+                        let state = json.result;
+                        if (state === "success") {
+                            alert("Signed out");
+                        }
+                    })
+            }
         });
     // fetch("http://localhost:3000/user/signout/" + sign_user.ID, {
     //     method: "GET",

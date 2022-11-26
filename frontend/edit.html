@@ -1,246 +1,256 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GitRank-EditProfile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <style>
+        .container {
+            width: 800px;
+        }
+
+        #box {
+            position: relative;
+            width: 90%;
+        }
+
+        #box::after {
+            display: block;
+            content: "";
+            padding-bottom: 90%;
+        }
+
+        #my_img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        #filebox input[type="file"] {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="v10_1288">
-        <form action="" method="get">
-            <input type="text" class="v10_1308" id="my_github" name="github">
-            <input type="text" class="v10_1331" id="my_interests" name="interests">
-            <input type="text" class="v10_1332" id="my_contact" name="contact">
-            <div class="name">
-                <a href="rank.html" class="v10_1290">GitRank</a>
-                <button type="button" class="v10_1291" id="btn_done">Done</button>
-                <a href="signin.html" class="v10_1292">Sign out</a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <nav class="navbar bg-light mb-4">
+        <div class="container">
+            <a class="navbar-brand" style="font-weight:bold; font-size:1.5rem" href="./rank.html">GitRank</a>
+            <form class="d-flex align-items-center">
+                <button id="btn_done" class="btn btn-outline-warning" type="button">Done</button>
+                <a class="nav-link ms-4" href="./signin.html">Sign Out</a>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4 mt-4" style="text-align:center;">
+                <div id="box" class="mt-3 mb-1">
+                    <img id="my_img" src="./image/github.png" class="rounded-3"><br>
+                </div>
+                <div align="right" class="pe-4 mb-3">
+                    <!-- <button id="image_upload" class="btn btn-warning btn-sm" type="submit">Upload</button><br> -->
+                    <div id="filebox">
+                        <input type="file" id="image_upload" accept=".jpg, .jpeg, .png" multiple>
+                        <label for="image_upload" class="btn btn-warning btn-sm">Upload</label>
+                    </div>
+                </div>
+                <!-- <span id="user_id" style="font-weight:bold; font-size:1.3rem">TestID</span> -->
             </div>
 
-            <div class="container">
-                <div class="image">
-                    <img src="image/github.png" class="img" id="my_img">
+            <div class="col-8 mt-3">
+                <div class="row mb-2">
+                    <div class="col-3" style="font-weight:bold;">
+                        <p><span>Contact :</span></p>
+                    </div>
+                    <div class="col-9">
+                        <p><input type="text" id="my_contact" style="border:2px solid orange; width:350px"></p>
+                    </div>
+                </div>
+                <strong>interests</strong><br>
+                <div class="rounded-2 p-2 mb-2 mt-1" style="border:3px solid orange; width:500px">
+                    <div class="row g-3 align-items-center" id="interests_wrapper">
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_frontend" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="itr_frontend">Frontend</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_backend" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="itr_backend">Backend</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_ai" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="itr_ai">AI</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_database" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="itr_database">Database</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_npl" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="itr_npl">NPL</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_machine" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_machine">Machine
+                                learning</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_neural" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_neural">Neural
+                                network</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_algorithm" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="itr_algorithm">Algorithm</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_mining" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_mining">Data
+                                mining</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_security" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="itr_security">Security</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_embeded" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_embeded">Embeded
+                                System</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_mobile" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_mobile">Mobile
+                                application</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_web" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_web">Web
+                                programming</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_vr" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="itr_vr">VR</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_ar" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="itr_ar">AR</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_network" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="itr_network">Network</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="itr_reverse" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5" for="itr_reverse">Reverse
+                                engineering</label><br>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="data">
-                    <table>
-                        <tr>
-                            <td style="width:120px">
-                                <p>Github</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:120px">
-                                <p>Interests</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:120px">
-                                <p>Contact</p>
-                            </td>
-                        </tr>
-                    </table>
-                    <fieldset style="height: 225px">
-                        <legend style="font-size:18px; font-family: Inter;">Comment</legend>
-                        <textarea id="comment" cols="75" rows="10" name="comment"></textarea>
-                    </fieldset>
+                <strong>Skills</strong><br>
+                <div class="rounded-2 p-2 mb-2 mt-1" style="border:3px solid orange; width:500px">
+                    <div class="row g-3 align-items-center" id="language_wrapper">
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_python" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_python">Python</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_java" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_java">Java</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_js" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_js">JavaScript</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_cpp" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_cpp">C++</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_php" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_php">PHP</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_ts" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_ts">TypeScript</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_c" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_c">C</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_go" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_go">Go</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_shell" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_shell">Shell</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_ruby" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_ruby">Ruby</label><br>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" class="btn-check" id="skill_c#" autocomplete="off">
+                            <label class="btn btn-outline-primary ms-1 text-nowrap rounded-5"
+                                for="skill_c#">C#</label><br>
+                        </div>
+                    </div>
                 </div>
+
+                <strong>Comment</strong>
+                <form>
+                    <div class="form-group mt-1">
+                        <textarea class="form-control mb-5" id="comment" rows="5"
+                            style="font-size:0.8em; text-align:left">Example</textarea>
+                    </div>
+                </form>
             </div>
-            <input type="file" class="v10_1306" id="image_upload" accept=".jpg, .jpeg, .png">
-            <label for="image_upload" class="v10_1306">Upload</label>
-        </form>
+
+        </div>
     </div>
     <script src="edit.js"></script>
 </body>
 
-</html> <br /><br />
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        font-size: 14px;
-    }
-
-    .v10_1288 {
-        width: 100%;
-        height: 1024px;
-        background: rgba(255, 255, 255, 1);
-        opacity: 1;
-        position: relative;
-        top: 0px;
-        left: 0px;
-        overflow: hidden;
-    }
-
-    .name {
-        color: #fff;
-    }
-
-    .v10_1290 {
-        width: 157px;
-        color: rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 28px;
-        left: 126px;
-        font-family: Inter;
-        font-weight: Bold;
-        font-size: 40px;
-        opacity: 1;
-        text-align: left;
-        text-decoration: none;
-    }
-
-    .v10_1291 {
-        width: 100px;
-        color: rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 33px;
-        left: 1010px;
-        font-family: Inter;
-        font-weight: Regular;
-        font-size: 32px;
-        opacity: 1;
-        text-align: left;
-        text-decoration: none;
-        background-color: #fff;
-        border: 0;
-    }
-
-
-    .v10_1292 {
-        width: 125px;
-        color: rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 33px;
-        left: 1195px;
-        font-family: Inter;
-        font-weight: Regular;
-        font-size: 32px;
-        opacity: 1;
-        text-align: left;
-        text-decoration: none;
-    }
-
-    .name {
-        color: #fff;
-    }
-
-    .v10_1306 {
-        width: 100px;
-        height: 25px;
-        background: rgba(255, 170, 0, 1);
-        opacity: 1;
-        position: absolute;
-        top: 551px;
-        left: 445px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        overflow: hidden;
-        text-align: center;
-        align-items: center;
-    }
-
-    .v10_1306:hover {
-        background: rgb(77, 77, 77);
-        color: #fff;
-    }
-
-    .v10_1307 {
-        width: 81px;
-        color: rgba(0, 0, 0, 1);
-        position: absolute;
-        top: 561px;
-        left: 404px;
-        font-family: Inter;
-        font-weight: Regular;
-        font-size: 24px;
-        opacity: 1;
-        text-align: left;
-    }
-
-    .v10_1308 {
-        width: 400px;
-        height: 35px;
-        background: rgba(255, 255, 255, 1);
-        opacity: 1;
-        position: absolute;
-        top: 175px;
-        left: 755px;
-        border: 1px solid rgba(255, 140, 0, 1);
-        overflow: hidden;
-        z-index: 2;
-    }
-
-    .v10_1331 {
-        width: 400px;
-        height: 35px;
-        background: rgba(255, 255, 255, 1);
-        opacity: 1;
-        position: absolute;
-        top: 220px;
-        left: 755px;
-        border: 1px solid rgba(255, 140, 0, 1);
-        overflow: hidden;
-        z-index: 2;
-    }
-
-    .v10_1332 {
-        width: 400px;
-        height: 35px;
-        background: rgba(255, 255, 255, 1);
-        opacity: 1;
-        position: absolute;
-        top: 265px;
-        left: 755px;
-        border: 1px solid rgba(255, 140, 0, 1);
-        overflow: hidden;
-        z-index: 2;
-    }
-
-    .container {
-        position: absolute;
-        top: 138px;
-        left: 145px;
-        width: 1150px;
-        height: 450px;
-    }
-
-    .image {
-        position: absolute;
-        top: 56.25px;
-        left: 57.5px;
-        width: 345px;
-        height: 337.5px;
-        border-radius: 20px;
-    }
-
-    .img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 345px;
-        height: 337px;
-
-    }
-
-    .data {
-        position: absolute;
-        left: 460px;
-        width: 575px;
-        height: 450px;
-        display: flex;
-        padding-top: 30px;
-        flex-direction: column;
-    }
-
-    .data p {
-        margin: 10px;
-        font-family: Inter;
-        font-weight: Regular;
-        font-size: 18px;
-    }
-</style>
+</html>
