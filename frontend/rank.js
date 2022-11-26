@@ -129,6 +129,19 @@ function loadTable(ID, INTERESTS, SKILLS) {
     btn.textContent = ID;
     btn.id = ID;
     btn.addEventListener("click", () => {
+        fetch("http://localhost:3000/score/" + ID, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => (res.json()))
+            .then(json => {
+                if (json.gitscore) {
+                    console.log(json.gitsocre);
+                }
+            })
+
         let url = "http://localhost:3000/userpage/" + ID;
         fetch(url, {
             method: 'GET',

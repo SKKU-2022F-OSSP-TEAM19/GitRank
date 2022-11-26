@@ -9,10 +9,24 @@ window.onload = function () {
     let span_skills = document.getElementById("user_skills");
     let span_contribution = document.getElementById("contribution");
     let img = document.getElementById("my_img");
+    let span_rank = document.getElementById("user_rank");
 
     if (localStorage.getItem("signin")) {
         user = JSON.parse(localStorage.getItem("signin"));
         console.log(user);
+        fetch("http://localhost:3000/score/" + user.ID, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => (res.json()))
+            .then(json => {
+                if (json.gitscore) {
+                    console.log(json.gitsocre);
+                }
+            })
+
         let url = "http://localhost:3000/userpage/" + user.ID;
         fetch(url, {
             method: 'GET',
@@ -40,6 +54,7 @@ window.onload = function () {
                 if (json.IMG !== "none") {
                     img.src = json.IMG;
                 }
+                span_rank.innerHTML = json.SCORE;
             })
     }
 

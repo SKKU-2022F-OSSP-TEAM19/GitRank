@@ -187,7 +187,7 @@ signup.addEventListener("click", () => {
             let state = json.result;
             if (state === "result: success") {
                 localStorage.setItem("signin", JSON.stringify(user));
-                let link = "rank.html";
+                let link = "signin.html";
                 location.href = link;
             }
             else if (state === "error: same ID") {

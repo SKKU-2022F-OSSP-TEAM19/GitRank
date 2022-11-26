@@ -9,6 +9,7 @@ window.onload = function () {
     let span_skills = document.getElementById("user_skills");
     let span_contribution = document.getElementById("contribution");
     let img = document.getElementById("my_img");
+    let span_rank = document.getElementById("user_rank");
 
     if (localStorage.getItem("profile")) {
         user = JSON.parse(JSON.stringify(localStorage.getItem("profile")));
@@ -22,6 +23,7 @@ window.onload = function () {
         span_com.innerHTML = user.COMMENT;
         span_skills.innerHTML = user.SKILLS;
         span_contribution.src = "https://ghchart.rshah.org/" + user.GITHUB;
+        span_rank.innerHTML = user.SCORE;
         if (user.IMG !== "none") {
             img.src = user.IMG;
         }
