@@ -98,7 +98,7 @@ router.post('/user/signup',(req,res)=>{
 })
 
 router.get('/users/scoreDescOrder',(req,res)=>{
-  // 유저 정보를 score 기준으로 내림차순 정렬함.
+  // 유저 정보를 score 기준으로 오름차순 정렬함.
   
   let ret=DB_users.sort((a,b)=>{    
     if(a.SCORE<b.SCORE)return 1;
@@ -108,7 +108,7 @@ router.get('/users/scoreDescOrder',(req,res)=>{
   res.status(200).json(ret);
 })
 router.get('/users/scoreAscOrder',(req,res)=>{
-  // 유저 정보를 score 기준으로 내림차순 정렬함.
+  // 유저 정보를 score 기준으로 오름차순 정렬함.
   
   let ret=DB_users.sort((a,b)=>{    
     if(a.SCORE>b.SCORE)return 1;
@@ -121,7 +121,7 @@ router.get('/userpage/list',(req,res)=>{
   res.status(200).json(DB_profile);
 })
 router.get('/users/interests/:interest',(req,res)=>{
-  // 유저 정보를 score 기준으로 내림차순 정렬함.
+  // 유저 정보를 score 기준으로 오름차순 정렬함.
   
   let ints=req.params.interest;
   console.log(ints+typeof(ints));
@@ -169,28 +169,16 @@ router.post('/userpage/edit/:username',(req,res)=>{
   let uId=req.params.username;
   let profile=DB_profile.filter(e=>e.ID===uId)[0];
   DB_profile=DB_profile.filter(e=>e.ID!==uId);
-  let userInfo=DB_users.filter(e=>e.ID===uId);
-  DB_users=DB_users.filter(e=>e.ID!==uId);
+  
   let body=req.body; 
 
   profile.IMG=body.IMG;
-  profile.INTERESTS=body.INTERESTS;
+  profile.INTERESTS=Object.values(body.INTERESTS);
   profile.COMMENT=body.COMMENT;
 
-  profile.SKILLS=body.SKILLS;
+  profile.SKILLS=Object.values(body.SKILLS);
 
-  //유저 정보 수정.
-  /* ID: body.ID, 
-      PW: body.PW,
-       GITHUB: body.GITHUB,
-       SCORE: 0,
-       INTERESTS:Object.values(body.INTERESTS), //리스트로 바꿔서 넣어줘야한다. 그냥 body.INTERESTS는 object임.
-      SKILLS:Object.values(body.SKILLS) 
-  */
-  userInfo.INTERESTS=body.INTERESTS;
-  userInfo.SKILLS=body.SKILLS;
   DB_profile.push(profile);
-  DB_users.push(userInfo);
   res.status(200).json({
     profile
   })
