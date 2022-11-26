@@ -1,27 +1,32 @@
 let fs=require('fs')
 
-function loadDatas(){
-    let dataBuffer=fs.readFileSync("DB_users.json");
+function loadUsers(){
+    let dataBuffer=fs.readFileSync("DB/DB_users.json");
     let data=JSON.parse(dataBuffer.toString());
-    DB_users=data;
-  
-    dataBuffer=fs.readFileSync("DB_profile.json");
-    data=JSON.parse(dataBuffer.toString());
-    DB_profile=data;
-  
+    if(Object.keys(data).length===0)return [];
+    return data;
   }
 
-function saveDatas(user,profile){
+  function loadProfiles(){
+    let dataBuffer=fs.readFileSync("DB/DB_profile.json");
+    let data=JSON.parse(dataBuffer.toString());
+    if(Object.keys(data).length===0)return [];
+
+    return data;
+  }
+
+function saveDatas(user,profile,DB_users,DB_profile){
   if(user){
     let dataUser=JSON.stringify(DB_users);
-    fs.writeFileSync("../DB_users.json",dataUser);
+    fs.writeFileSync("DB/DB_users.json",dataUser);
   }
   if(profile){
     let dataProfile=JSON.stringify(DB_profile);
   
-    fs.writeFileSync("../DB_profile.json",dataProfile);
+    fs.writeFileSync("DB/DB_profile.json",dataProfile);
   }
 }
 
-module.exports.loadDatas=loadDatas;
+module.exports.loadProfiles=loadProfiles;
+module.exports.loadUsers=loadUsers;
 module.exports.saveDatas=saveDatas;

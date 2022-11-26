@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var privateInfo=require('./privateInfo');
 
-let dbFunc=require('./dbFuncs');
+let dbFuncs=require('./dbFuncs');
 let gitFunc=require('./gitScore');
 let DB_users=[]; //{ID: , PW: , GITHUBID: ,SCORE,INTERESTS}
 let DB_profile=[];
@@ -16,7 +16,9 @@ let session_login=[];
 //   })
 
 
-dbFuncs.loadDatas();
+DB_users=dbFuncs.loadUsers();
+DB_profile=dbFuncs.loadProfiles();
+
 
 function getUserFromDBByUserName(username){
   let uidx=-1;
@@ -46,11 +48,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/test/get',(req,res)=>{
-  res.status(200).json({
-    "test":123
-  })
-})
+
 
 router.post('/user/signup',(req,res)=>{
   body=req.body;
@@ -98,7 +96,7 @@ router.post('/user/signup',(req,res)=>{
     DB_users.push(userdata);
     DB_profile.push(_prof);
     //console.log(DB_users);
-    dbFuncs.saveDatas(true,true);
+    dbFuncs.saveDatas(true,true,DB_users,DB_profile);
     res.status(200).json({
       result:"result: success"
     })
@@ -200,7 +198,7 @@ router.post('/userpage/edit/:username',(req,res)=>{
   //userInfo.SKILLS=body.SKILLS;
   DB_profile.push(profile);
   //DB_users.push(userInfo);
-  dbFuncs.saveDatas(false,true);
+  dbFuncs.saveDatas(false,true,DB_users,DB_profile);
   res.status(200).json({
     profile
   })
@@ -235,7 +233,7 @@ router.get('/score/:username',async (req,res)=>{
     userPageInfo[0].SCORE=score;
     DB_profile=DB_profile.filter(e=>e.ID!==username);
     DB_profile.push(userPageInfo[0]);
-    dbFuncs.saveDatas(false,true);
+    dbFuncs.saveDatas(false,true,DB_users,DB_profile);
     res.status(200).json({
       gitscore:score
     });
