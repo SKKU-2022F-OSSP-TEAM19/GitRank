@@ -2,16 +2,23 @@ const e = require('express');
 var express = require('express');
 var router = express.Router();
 var privateInfo = require('./privateInfo');
+
+let dbFuncs = require('./dbFuncs');
 let gitFunc = require('./gitScore');
 let DB_users = []; //{ID: , PW: , GITHUBID: ,SCORE,INTERESTS}
 let DB_profile = [];
 let session_login = [];
 
-let Octo = require('octokit');
+// let Octo=require('octokit');
 
-const octokit = new Octo.Octokit({
-  auth: privateInfo.APIKEY
-})
+// const octokit = new Octo.Octokit({
+//     auth: privateInfo.APIKEY
+//   })
+
+
+DB_users = dbFuncs.loadUsers();
+DB_profile = dbFuncs.loadProfiles();
+
 
 function getUserFromDBByUserName(username) {
   let uidx = -1;
@@ -41,11 +48,7 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/test/get', (req, res) => {
-  res.status(200).json({
-    "test": 123
-  })
-})
+
 
 router.post('/user/signup', (req, res) => {
   body = req.body;
@@ -74,23 +77,26 @@ router.post('/user/signup', (req, res) => {
     let userdata = {
       ID: body.ID,
       PW: body.PW,
-      GITHUB: body.GITHUB,
-      SCORE: 0,
-      INTERESTS: Object.values(body.INTERESTS), //리스트로 바꿔서 넣어줘야한다. 그냥 body.INTERESTS는 object임.
-      SKILLS: Object.values(body.SKILLS)
+      //GITHUB: body.GITHUB
+      //,
+      //SCORE: 0,
+      //INTERESTS:body.INTERESTS, //리스트로 바꿔서 넣어줘야한다. 그냥 body.INTERESTS는 object임.
+      //SKILLS:body.SKILLS
     };
     let _prof = {
-      ID: body.ID,
+      ID: body.ID, //FK
       GITHUB: body.GITHUB,
       IMG: "none",
-      INTERESTS: Object.values(body.INTERESTS),
+      INTERESTS: body.INTERESTS,
       COMMENT: "",
       SCORE: 0,
-      SKILLS: Object.values(body.SKILLS)
+      SKILLS: body.SKILLS,
+      CONTACT: body.CONTACT
     }
     DB_users.push(userdata);
     DB_profile.push(_prof);
     //console.log(DB_users);
+    dbFuncs.saveDatas(true, true, DB_users, DB_profile);
     res.status(200).json({
       result: "result: success"
     })
@@ -98,9 +104,9 @@ router.post('/user/signup', (req, res) => {
 })
 
 router.get('/users/scoreDescOrder', (req, res) => {
-  // 유저 정보를 score 기준으로 오름차순 정렬함.
+  // 유저 정보를 score 기준으로 내림차순 정렬함.
 
-  let ret = DB_users.sort((a, b) => {
+  let ret = DB_profile.sort((a, b) => {
     if (a.SCORE < b.SCORE) return 1;
     else if (a.SCORE === b.SCORE) return 0;
     else return -1;
@@ -108,21 +114,24 @@ router.get('/users/scoreDescOrder', (req, res) => {
   res.status(200).json(ret);
 })
 router.get('/users/scoreAscOrder', (req, res) => {
-  // 유저 정보를 score 기준으로 오름차순 정렬함.
+  // 유저 정보를 score 기준으로 내림차순 정렬함.
 
-  let ret = DB_users.sort((a, b) => {
+  let ret = DB_profile.sort((a, b) => {
     if (a.SCORE > b.SCORE) return 1;
     else if (a.SCORE === b.SCORE) return 0;
     else return -1;
   })
   res.status(200).json(ret);
 })
+router.get('/userpage/list', (req, res) => {
+  res.status(200).json(DB_profile);
+})
 router.get('/users/interests/:interest', (req, res) => {
-  // 유저 정보를 score 기준으로 오름차순 정렬함.
+  // 유저 정보를 score 기준으로 내림차순 정렬함.
 
   let ints = req.params.interest;
   console.log(ints + typeof (ints));
-  let ret = DB_users.filter(e => Object.values(e.INTERESTS).includes(ints))
+  let ret = DB_profile.filter(e => Object.values(e.INTERESTS).includes(ints))
   ret = ret.map(e => e = {
     ID: e.ID,
     GITHUB: e.GITHUB,
@@ -143,7 +152,7 @@ router.get('/users/skills/:skill', (req, res) => {
 
   let ints = req.params.skill;
   console.log(ints + typeof (ints));
-  let ret = DB_users.filter(e => Object.values(e.SKILLS).includes(ints))
+  let ret = DB_profile.filter(e => Object.values(e.SKILLS).includes(ints))
   ret = ret.map(e => e = { //conceal password
     ID: e.ID,
     GITHUB: e.GITHUB,
@@ -160,18 +169,36 @@ router.get('/users/skills/:skill', (req, res) => {
   res.status(200).json(ret);
 })
 
-router.post('/userpage/edit/:username', (res, req) => {
+router.post('/userpage/edit/:username', (req, res) => {
+  //let uId=body.ID;
+  //console.log(body);
   let uId = req.params.username;
-  let profile = DB_profile.filter(e => e.ID === uId);
+  let profile = DB_profile.filter(e => e.ID === uId)[0];
   DB_profile = DB_profile.filter(e => e.ID !== uId);
+  //let userInfo=DB_users.filter(e=>e.ID===uId);
+  //DB_users=DB_users.filter(e=>e.ID!==uId);
   let body = req.body;
+
   profile.IMG = body.IMG;
-  profile.INTERESTS = Object.values(body.INTERESTS);
+  profile.INTERESTS = body.INTERESTS;
   profile.COMMENT = body.COMMENT;
 
-  profile.SKILLS = Object.values(body.SKILLS);
+  profile.SKILLS = body.SKILLS;
+  profile.CONTACT = body.CONTACT;
 
+  //유저 정보 수정.
+  /* ID: body.ID, 
+      PW: body.PW,
+       GITHUB: body.GITHUB,
+       SCORE: 0,
+       INTERESTS:Object.values(body.INTERESTS), //리스트로 바꿔서 넣어줘야한다. 그냥 body.INTERESTS는 object임.
+      SKILLS:Object.values(body.SKILLS) 
+  */
+  //userInfo.INTERESTS=body.INTERESTS;
+  //userInfo.SKILLS=body.SKILLS;
   DB_profile.push(profile);
+  //DB_users.push(userInfo);
+  dbFuncs.saveDatas(false, true, DB_users, DB_profile);
   res.status(200).json({
     profile
   })
@@ -195,33 +222,24 @@ router.get('/userpage/:userID', (req, res) => {
 router.get('/score/:username', async (req, res) => {
   let username = req.params.username;
 
-  let uidx = -1;
-  for (let i = 0; i < DB_users.length; i++) {
-    if (DB_users[i].ID === username) {
-      uidx = i;
-      break;
-    }
-  }
-  if (uidx === -1) {
+  let userPageInfo = DB_profile.filter(e => e.ID === username);
+  if (userPageInfo.length === 0) {
     res.status(404).json({
       result: "error"
     })
   }
-  let gitID = DB_users[uidx].GITHUB;
-  console.log(gitID);
-  let score = await gitFunc.getScore(gitID);
-  DB_users[uidx].SCORE = score;
-  for (let i = 0; i < DB_profile.length; i++) {
-    if (DB_profile[i].ID === username) {
-      uidx = i;
-      break;
-    }
+  else {
+    let score = await gitFunc.getScore(userPageInfo[0].GITHUB);
+    userPageInfo[0].SCORE = score;
+    DB_profile = DB_profile.filter(e => e.ID !== username);
+    DB_profile.push(userPageInfo[0]);
+    dbFuncs.saveDatas(false, true, DB_users, DB_profile);
+    res.status(200).json({
+      gitscore: score
+    });
   }
-  DB_profile[uidx].SCORE = score;
 
-  res.status(200).json({
-    gitscore: score
-  });
+
 })
 
 router.get('/user/signin/:username/:password', (req, res) => {
@@ -266,7 +284,6 @@ router.get('/user/signout/:username', (req, res) => {
     res.status(200).json({
       result: "success"
     })
-
 
   }
 
