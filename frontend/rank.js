@@ -140,6 +140,7 @@ function loadTable(ID, INTERESTS, SKILLS) {
                 if (json.gitscore) {
                     console.log(json.gitsocre);
                 }
+                console.log(json);
             })
 
         let url = "http://localhost:3000/userpage/" + ID;
