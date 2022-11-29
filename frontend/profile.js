@@ -17,6 +17,7 @@ window.onload = function () {
         console.log(user);
         span_id.innerHTML = user.ID;
         span_git.innerHTML = user.GITHUB;
+        span_git.href = 'https://github.com/' + user.GITHUB;
         span_itr.innerHTML = user.INTERESTS;
         span_con.innerHTML = user.CONTACT;
         span_con.href = "mailto:" + user.CONTACT;

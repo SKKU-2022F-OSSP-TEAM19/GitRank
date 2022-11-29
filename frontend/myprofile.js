@@ -28,6 +28,7 @@ window.onload = function () {
                 console.log(json);
                 span_id.innerHTML = json.ID;
                 span_git.innerHTML = json.GITHUB;
+                span_git.href = 'https://github.com/' + json.GITHUB;
                 span_itr.innerHTML = json.INTERESTS;
                 span_skills.innerHTML = json.SKILLS;
                 if (json.CONTACT) {
