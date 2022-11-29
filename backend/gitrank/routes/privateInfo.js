@@ -1,1 +1,1 @@
-let APIKEY='GITHUB_API_KEY'
+let APIKEY = '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'
