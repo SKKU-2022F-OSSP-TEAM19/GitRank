@@ -10,7 +10,7 @@ let getScoreByRepo = async(owner,repo,bias,div)=>{
         owner: owner,
         repo: repo
     })
-    if(typeof(res.data)===undefined){
+    if(res.data==null){
         return 0;
     }
     //console.log(ret);
@@ -38,8 +38,11 @@ let getScore=async (username)=>{
     // )
 
     //5개의 레포로 리미트.
-    for(let i=0;i<5&&i<Object.values(res.data).length;i++){
+    //console.log("github data",res.data);
+    for(let i=0;i<10&&i<Object.values(res.data).length;i++){
         let e=Object.values(res.data)[i];
+        console.log("Data::")
+        console.log(res.data[i]['name']);
         //score=score+getScoreByRepo(username,e.name,5,13);
         let tmpScore=await getScoreByRepo(username,e.name,5,13);
         score=score+tmpScore;
