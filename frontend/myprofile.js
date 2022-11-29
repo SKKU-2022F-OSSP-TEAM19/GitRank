@@ -14,18 +14,6 @@ window.onload = function () {
     if (localStorage.getItem("signin")) {
         user = JSON.parse(localStorage.getItem("signin"));
         console.log(user);
-        fetch("http://localhost:3000/score/" + user.ID, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(res => (res.json()))
-            .then(json => {
-                if (json.gitscore) {
-                    console.log(json.gitsocre);
-                }
-            })
 
         let url = "http://localhost:3000/userpage/" + user.ID;
         fetch(url, {
@@ -59,3 +47,34 @@ window.onload = function () {
     }
 
 }
+
+let refresh = document.getElementById("refresh");
+refresh.addEventListener("click", () => {
+    fetch("http://localhost:3000/score/" + user.ID, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(res => (res.json()))
+        .then(json => {
+            if (json.gitscore) {
+                console.log(json.gitsocre);
+            }
+        })
+
+    let url = "http://localhost:3000/userpage/" + user.ID;
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(res => res.json())
+        .then(json => {
+            //alert("Hi");
+            let span_rank = document.getElementById("user_rank");
+            span_rank.innerHTML = 1000;
+        })
+
+})

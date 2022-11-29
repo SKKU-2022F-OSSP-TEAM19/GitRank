@@ -129,19 +129,6 @@ function loadTable(ID, INTERESTS, SKILLS) {
     btn.textContent = ID;
     btn.id = ID;
     btn.addEventListener("click", () => {
-        fetch("http://localhost:3000/score/" + ID, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(res => (res.json()))
-            .then(json => {
-                if (json.gitscore) {
-                    console.log(json.gitsocre);
-                }
-                console.log(json);
-            })
 
         let url = "http://localhost:3000/userpage/" + ID;
         fetch(url, {
@@ -178,8 +165,14 @@ function loadTable(ID, INTERESTS, SKILLS) {
 
     td1.appendChild(btn);
     tr.appendChild(td1);
+    let itr = "";
+    for (let i = 0; i < INTERESTS.length; i++) {
+        itr += INTERESTS[i]
+        itr += ", ";
+    }
+    //td2.textContent = INTERESTS
+    td2.textContent = itr;
 
-    td2.textContent = INTERESTS
     tr.appendChild(td2);
     td3.textContent = SKILLS
 
