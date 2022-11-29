@@ -1,6 +1,103 @@
 var privateInfo=require('./privateInfo');
 let Octo=require('octokit');
+const https=require('https');
+const parser=require('node-html-parser');
+const { resolve } = require('path');
+const { rejects } = require('assert');
+const baseUrl="https://ghchart.rshah.org/"
 
+const dataRegex= new RegExp(`[0-9]+-[0-9]+-[0-9]+`)
+const scoreRegex= new RegExp(`[0-9]+`)
+let getScoreHTTP=async (githubId)=>{
+    let retScore=0;
+    console.log(githubId);
+    retScore=await ff(githubId);
+    console.log(retScore);
+    return retScore;
+    //console.log("new Score of "+githubID+": "+retScore);
+    return 0;
+}
+let ff= async (githubID)=> {
+
+
+    let promise = new Promise((resolve,reject)=>{
+        let data="";
+        https.get(baseUrl+githubID,(res)=>{
+            res.on("data",(d)=>{
+                data+=d;
+        });
+            res.on("end",()=>{
+                //console.log(data)
+                resolve(data);
+            })
+        });
+
+        
+    })
+    let data=await promise;
+    let root=parser.parse( promise);
+     let to=root.querySelector("svg");
+    console.log(to)
+    let now=new Date()
+    let ret =500;
+    // to.childNodes.forEach((e)=>{
+    //     let arr = e.rawAttrs.split(" ");
+    //     if(arr.length===7){
+    //         //console.log(arr[1].match(scoreRegex)[0]);
+            
+    //         let date=arr[2].match(dataRegex)[0].split("-");
+    //         let year=Number.parseInt(date[0])
+    //         let month=Number.parseInt(date[1])
+    //         //console.log(arr[2].match(dataRegex)[0]);
+    //         let score=Number.parseInt(arr[1].match(scoreRegex)[0])
+    //         score=score*(now.getFullYear()===year?12-now.getMonth()+month:1)
+    //         //console.log(score);
+            
+    //         ret+=score
+    //         //console.log(retScore)
+    //         //console.log(year+"-"+month+": "+score);
+    //     }
+    // })
+    return ret;
+    // https.get(baseUrl+githubID,(res)=>{
+    // let ret=0;
+    // let data="";
+    // res.on("data",(d)=>{
+    //     data+=d;
+    // });
+    // res.on("end",()=>{
+        
+
+    //     let root=parser.parse(data);
+
+ 
+    //     let to=root.querySelector("svg");
+
+    //     let now=new Date()
+       
+    //     to.childNodes.forEach((e)=>{
+    //         let arr = e.rawAttrs.split(" ");
+    //         if(arr.length===7){
+    //             //console.log(arr[1].match(scoreRegex)[0]);
+                
+    //             let date=arr[2].match(dataRegex)[0].split("-");
+    //             let year=Number.parseInt(date[0])
+    //             let month=Number.parseInt(date[1])
+    //             //console.log(arr[2].match(dataRegex)[0]);
+    //             let score=Number.parseInt(arr[1].match(scoreRegex)[0])
+    //             score=score*(now.getFullYear()===year?12-now.getMonth()+month:1)
+    //             //console.log(score);
+                
+    //             ret+=score
+    //             //console.log(retScore)
+    //             //console.log(year+"-"+month+": "+score);
+    //         }
+    //     })
+        
+
+    // })
+    // return ret;
+}
 const octokit = new Octo.Octokit({
     auth: privateInfo.APIKEY
   })
@@ -53,3 +150,4 @@ let getScore=async (username)=>{
 }
 
 module.exports.getScore=getScore;
+module.exports.getScoreHTTP=getScoreHTTP;
