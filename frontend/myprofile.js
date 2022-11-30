@@ -76,6 +76,7 @@ refresh.addEventListener("click", () => {
             //alert("Hi");
             let span_rank = document.getElementById("user_rank");
             span_rank.innerHTML = 1000;
+            span_rank.innerHTML = json.SCORE;
         })
 
 })

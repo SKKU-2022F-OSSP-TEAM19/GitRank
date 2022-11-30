@@ -74,33 +74,37 @@ login.addEventListener("click", () => {
 
 window.onload = function () {
     if (localStorage.getItem("signin")) {
-        sign_user = localStorage.getItem("signin");
+        sign_user = JSON.parse(localStorage.getItem("signin"));
+        console.log(sign_user);
+        localStorage.removeItem("signin");
+        fetch("http://localhost:3000/user/signingin/" + sign_user.ID, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then(data => data.json())
+            .then(json => {
+                let state = json.result
+                console.log(state);
+                if (state === "success") {
+                    fetch("http://localhost:3000/user/signout/" + sign_user.ID, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }).then(data => data.json())
+                        .then(json => {
+                            let state = json.result;
+                            if (state === "success") {
+                                alert("Signed out");
+                            }
+                        })
+                }
+            });
+
+
     }
-    if (localStorage.getItem("signup")) {
-        //console.log(localStorage.getItem("signup"));
-    }
-    fetch("http://localhost:3000/users/signingin", {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then(data => data.json())
-        .then(json => {
-            if (json.result[0]) {
-                fetch("http://localhost:3000/user/signout/" + json.result[0], {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }).then(data => data.json())
-                    .then(json => {
-                        let state = json.result;
-                        if (state === "success") {
-                            alert("Signed out");
-                        }
-                    })
-            }
-        });
+
     // fetch("http://localhost:3000/user/signout/" + sign_user.ID, {
     //     method: "GET",
     //     headers: {
