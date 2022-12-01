@@ -315,7 +315,20 @@ app.use(bodyParser.json({ limit: 5000000 }));
 3) rank.js
 - window.onload : 순위창을 비운다음, 서버에서 유저들의 정보를 가져와서 순서대로 나열.
 - dropdown 안의 버튼 클릭 이벤트 : 각 버튼이 클릭되면, id=search_item의 innerHTML 변경하고, 검색어의 종류를 변경. (target 1: ID, 2: Interests, 3:Skills)
-- loadTable() : 
+- loadTable() : 정보가 들어오면 순위창에 집어넣는다. ID는 버튼으로, 클릭이 되면 해당 유저의 정보를 서버에서 받아온 다음, 그 유저의 프로필 화면으로 넘어간다.
+- Search 버튼(id=btn_search)의 클릭 이벤트 : target에 맞게 검색창(id=data_searched)을 검색한다. 서버에서 정보를 받아온 다음, 순위창을 갱신한다.
+
+<br>
+
+4) profile.js
+- window.onload : profile이 저장된 local storage의 정보를 바탕으로 프로필 구성.
+
+<br>
+
+5) myprofile.js
+- window.onload : local storage에 저장된 로그인 유저 정보를 이용해서 서버에서 정보를 가져온다. 받은 정보를 토대로 프로필을 구성한다.
+- refresh 버튼(id=refresh)의 클릭 이벤트 : score을 backend에 요청해서 그 정보를 갱신한다. 갱신된 점수를 받아와서 id=user_rank에 다시 쓴다.
+
 
 <br>
 우수 프로젝트 시상 프로그램에 지원합니다.
