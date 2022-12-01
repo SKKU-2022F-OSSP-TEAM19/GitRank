@@ -46,6 +46,11 @@ window.onload = function () {
                 span_rank.innerHTML = json.SCORE;
             })
     }
+    else {
+        alert("Connection has been terminated.");
+        let link = 'signin.html';
+        location.href = link;
+    }
 
 }
 

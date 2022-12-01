@@ -208,6 +208,11 @@ window.onload = function () {
         // input_comment.value = user.COMMENT;
         // img.src = user.IMG;
     }
+    else {
+        alert("Connection has been terminated.");
+        let link = 'signin.html';
+        location.href = link;
+    }
     let url = "http://localhost:3000/userpage/" + user.ID;
     fetch(url, {
         method: 'GET',

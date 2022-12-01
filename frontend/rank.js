@@ -190,6 +190,11 @@ window.onload = function () {
         user = JSON.parse(localStorage.getItem("signin"));
 
     }
+    else {
+        alert("Connection has been terminated.");
+        let link = 'signin.html';
+        location.href = link;
+    }
     fetch("http://localhost:3000/users/scoreDescOrder", {
         method: 'GET',
         headers: {
