@@ -97,13 +97,14 @@ npm start
 - 더 많은 유저가 회원가입하면,
 ![image](https://user-images.githubusercontent.com/59384684/204954085-8ec09514-3928-46d4-99a2-a155f44b902a.png)
 ***
+#### Search
 검색은 총 3가지 방식으로 할 수 있습니다.
 ![image](https://user-images.githubusercontent.com/59384684/204954596-6bca54a9-5d92-4cab-83cb-e8edb550f0dc.png)
 
 ID, Interests, Skills를 눌러서 방식을 변경하실 수 있습니다.
 <br>
-
-1. ID : 특정 ID를 검색합니다. ID를 입력하고 Search 버튼을 클릭합니다.
+<br>
+##### 1. ID : 특정 ID를 검색합니다. ID를 입력하고 Search 버튼을 클릭합니다.
 a. 검색한 ID가 유효하면(정확하면),
 <br>
 
@@ -120,5 +121,34 @@ c. 아무것도 입력하지 않으면,
 ![image](https://user-images.githubusercontent.com/59384684/204955454-37a9d119-dffd-43b4-8afb-26fd0239d1fb.png)
 <br>
 모든 이용자를 불러옵니다. 이는 Interests, Skills에서도 마찬가지입니다.
+<br>
+<br>
+##### 2. Interests : 검색한 Interest를 갖고 있는 유저들을 출력합니다. 검색된 유저들은 Score 순으로 순위가 매겨집니다.
+드롭다운을 눌러서 Interests를 선택합니다.
 
-2. Interests : 검색한 Interests를 갖고 있는 유저들을 출력합니다. 검색된 유저들은 Score 순으로 순위가 매겨집니다.
+![image](https://user-images.githubusercontent.com/59384684/204954596-6bca54a9-5d92-4cab-83cb-e8edb550f0dc.png)
+<br>
+ID와 같은 방법으로 검색하시면 됩니다.
+이때, 대소문자를 구분하셔야 합니다.
+
+![image](https://user-images.githubusercontent.com/59384684/204956101-95202666-8944-46f4-b048-a6bdaad59836.png)
+<br>
+마찬가지로, 검색창이 비워져 있으면 모든 유저가 출력됩니다.
+<br>
+<br>
+##### 3. Skills : 검색한 Skill을 갖고 있는 유저들을 출력합니다. 검색된 유저들은 Score 순으로 순위가 매겨집니다.
+Interests와 같은 방식입니다.
+다만, C#의 경우 검색이 안되고 있습니다. 참고하시기 바랍니다.
+<br>
+<br>
+***
+#### Profile
+순위창에서 각 유저의 ID는 버튼으로 되어 있습니다.
+클릭하시면, 해당 유저의 프로필 화면으로 넘어갑니다.
+<img width="696" alt="image" src="https://user-images.githubusercontent.com/59384684/204959109-cea3ba26-1627-4a6f-9ee7-f1d6c5d453eb.png">
+자세한 내용은 4.Profile.html에서 다루겠습니다.
+<br>
+- 마지막으로 nav에 위치한 My profile을 누르면, 내 프로필 화면으로,
+- Sign Out을 누르면 로그인 화면으로 이동합니다. signin에서 설명한 대로, 기존에 로그인된 정보는 로그아웃됩니다.
+
+### 4) profile.html
