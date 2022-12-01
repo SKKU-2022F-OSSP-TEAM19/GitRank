@@ -1,13 +1,18 @@
 const e = require('express');
 var express = require('express');
 var router = express.Router();
-//var privateInfo = require('./privateInfo');
+
+const https = require('https');
+const parser = require('node-html-parser');
 
 let dbFuncs = require('./dbFuncs');
 let gitFunc = require('./gitScore');
 let DB_users = []; //{ID: , PW: , GITHUBID: ,SCORE,INTERESTS}
 let DB_profile = [];
 let session_login = [];
+
+const dataRegex = new RegExp(`[0-9]+-[0-9]+-[0-9]+`)
+const scoreRegex = new RegExp(`[0-9]+`)
 
 // let Octo=require('octokit');
 
@@ -219,13 +224,15 @@ router.get('/userpage/:userID', (req, res) => {
   }
 })
 
+
 router.get('/score/:username', async (req, res) => {
   let username = req.params.username;
 
   let userPageInfo = DB_profile.filter(e => e.ID === username);
   if (userPageInfo.length === 0) {
     res.status(404).json({
-      result: "error"
+      result: "error:no such user"
+
     })
   }
   else {
@@ -241,6 +248,69 @@ router.get('/score/:username', async (req, res) => {
 
 
 })
+/*
+router.get('/score/:username', async (req, res) => {
+  let username = req.params.username;
+
+  let userPageInfo = DB_profile.filter(e => e.ID === username);
+  if (userPageInfo.length === 0) {
+    res.status(404).json({
+      result: "error:no such user"
+    })
+  }
+  else {
+    //--------------------------
+
+    https.get("https://ghchart.rshah.org/" + userPageInfo[0].GITHUB, (rrres) => {
+      let data = "";
+      rrres.on("data", (d) => {
+        data += d;
+      });
+      rrres.on("end", () => {
+
+        let retScore = 500; //base score
+        let now = new Date()
+
+        let root = parser.parse(data);
+        root = root.querySelector("svg");
+        root.childNodes.forEach((e) => {
+          let arr = e.rawAttrs.split(" ");
+          if (arr.length === 7) {
+
+
+            let date = arr[2].match(dataRegex)[0].split("-");
+            let year = Number.parseInt(date[0])
+            let month = Number.parseInt(date[1])
+
+            let score = Number.parseInt(arr[1].match(scoreRegex)[0])
+            score = score * (now.getFullYear() === year ? 12 - now.getMonth() + month : 1)
+
+
+            retScore += score
+
+          }
+        })
+        res.status(200).json({
+          gitscore: retScore
+        });
+      })
+    });
+
+
+    //---------------------------
+    // let score= await gitFunc.getScoreHTTP(userPageInfo[0].GITHUB);
+    // userPageInfo[0].SCORE=score;
+    // DB_profile=DB_profile.filter(e=>e.ID!==username);
+    // DB_profile.push(userPageInfo[0]);
+    // dbFuncs.saveDatas(false,true,DB_users,DB_profile);
+    // res.status(200).json({
+    //   gitscore:score
+    // });
+  }
+
+
+})
+*/
 
 router.get('/user/signin/:username/:password', (req, res) => {
   let username = req.params.username;
