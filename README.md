@@ -294,6 +294,13 @@ app.use(bodyParser.json({ limit: 5000000 }));
 
 #### a) HTML - Nainho, GeonhanKang
 
+1) signin.html
+2) signup.html
+3) rank.html
+4) profile.html
+5) myprofile.html
+6) edit.html
+
 <br>
 
 #### b) JS - Nainho
@@ -329,6 +336,14 @@ app.use(bodyParser.json({ limit: 5000000 }));
 - window.onload : local storage에 저장된 로그인 유저 정보를 이용해서 서버에서 정보를 가져온다. 받은 정보를 토대로 프로필을 구성한다.
 - refresh 버튼(id=refresh)의 클릭 이벤트 : score을 backend에 요청해서 그 정보를 갱신한다. 갱신된 점수를 받아와서 id=user_rank에 다시 쓴다.
 
+<br>
+
+6) edit.js
+- window.onload : local storage에 저장된 로그인 유저 정보를 이용해서 서버에서 정보를 가져온다. 받은 정보를 토대로 수정 전 정보를 default 값으로 입력한다.
+- checkITR() : 입력된 Interests를 토대로 체크박스를 체크한다.
+- checkSK() : 입력된 Skills를 토대로 체크박스를 체크한다.
+- Done 버튼(id=btn_done)의 클릭 이벤트 : 수정된 정보를 서버에 전달한다. 전달받은 정보를 토대로 서버에서 갱신이 성공적으로 이뤄지면, myprofile으로 이동한다.
+- readImage() : Upload를 통해서 이미지를 변경한다.
 
 <br>
 우수 프로젝트 시상 프로그램에 지원합니다.
