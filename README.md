@@ -298,6 +298,24 @@ app.use(bodyParser.json({ limit: 5000000 }));
 
 #### b) JS - Nainho
 
+1) signin.js
+- window.onload : 이미 로그인된 유저가 있으면, 로그아웃 시키기
+- Log in 버튼(id=btn_login)의 클릭 이벤트 : 입력받은 ID, PW 검사하고 backend에 정보를 보내서 로그인
+- 로그인이 완료되면 ID와 PW 정보를 local stroage에 저장하고, rank로 페이지 이동.
+
+<br>
+
+2) signup.js
+- Sign Up 버튼(id=btn_signup)의 클릭 이벤트 : 입력받은 정보를 backend에 보낸다.
+- Interests, Skills의 체크박스가 클릭되면 그 내용 array에 저장하여 backend로 전송.
+- 회원가입을 성공하면 local storage에 저장하고, signin으로 페이지 이동
+
+<br>
+
+3) rank.js
+- window.onload : 순위창을 비운다음, 서버에서 유저들의 정보를 가져와서 순서대로 나열.
+- dropdown 안의 버튼 클릭 이벤트 : 각 버튼이 클릭되면, id=search_item의 innerHTML 변경하고, 검색어의 종류를 변경. (target 1: ID, 2: Interests, 3:Skills)
+- loadTable() : 
 
 <br>
 우수 프로젝트 시상 프로그램에 지원합니다.
