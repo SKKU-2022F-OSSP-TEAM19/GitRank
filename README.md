@@ -65,7 +65,7 @@ npm start
 ***
 - 다른 페이지에서 넘어오거나, 새로운 창으로 signin을 접속하실 경우, 중복 로그인 방지를 위해 기존에 접속했던 정보를 로그아웃 됩니다.
 ![image](https://user-images.githubusercontent.com/59384684/204951961-c9be85a4-0a11-4637-9eca-84acbdaba321.png)
-
+<br>
 ### 2) signup.html
 ![image](https://user-images.githubusercontent.com/59384684/204952196-104bbe2c-3561-4bcd-b1da-cb701e63827e.png)
 - 회원가입 화면입니다.
@@ -86,7 +86,7 @@ npm start
 - 회원가입한 정보는 자동으로 /backend/gitrank/DB/에 있는 DB_user.json, DB_profilfe.json에 저장됩니다.
 - DB_user.json은 모든 이용자의 ID와 PW를 관리합니다.
 - DB_profile.json은 모든 이용자의 ID, GITHUB, 프로필 이미지, Interests, Skills(Languages), Contact(E-mail address), Comment, Score를 관리합니다.
-
+<br>
 ### 3) rank.html
 ![image](https://user-images.githubusercontent.com/59384684/204953693-79fb6d85-4211-4510-9d66-6a7e3b1968a5.png)
 - 로그인을 성공하면, 저희 앱의 메인 페이지인 rank 화면으로 넘어옵니다.
@@ -140,6 +140,8 @@ ID와 같은 방법으로 검색하시면 됩니다.
 Interests와 같은 방식입니다.
 다만, C#의 경우 검색이 안되고 있습니다. 참고하시기 바랍니다.
 <br>
+- 현재 Interest와 Skills의 경우 1개를 입력한 경우에만 검색이 성공합니다.
+- 다중 검색이 가능하도록 해보세요!!
 <br>
 ***
 #### Profile
@@ -150,5 +152,69 @@ Interests와 같은 방식입니다.
 <br>
 - 마지막으로 nav에 위치한 My profile을 누르면, 내 프로필 화면으로,
 - Sign Out을 누르면 로그인 화면으로 이동합니다. signin에서 설명한 대로, 기존에 로그인된 정보는 로그아웃됩니다.
-
+<br>
 ### 4) profile.html
+
+![image](https://user-images.githubusercontent.com/59384684/204959761-3b60e903-b7e6-4145-977f-9d2fd1b3e468.png)
+유저의 프로필 페이지 입니다.
+<br>
+Contact에 있는 e-mail 주소를 누르면 해당 유저에게 메일을 보내실 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/59384684/204960107-f8ea9952-7bd6-4c53-8a9e-fb770c2d0df9.png)
+
+<br>
+Rating Score 밑의 그림은 해당 유저의 Github 활동을 보여줍니다.
+
+![image](https://user-images.githubusercontent.com/59384684/204960233-f9f4816b-1acc-4bfd-8540-8c9a55f9dbbb.png)
+<br>
+그림은 [잔디]("https://ghchart.rshah.org/) 를 사용하였습니다.
+"https://ghchart.rshah.org/ + user.GITHUB을 하시면, 해당 유저의 활동을 볼 수 있습니다.
+
+<br>
+### 5) myprofile.html
+
+![image](https://user-images.githubusercontent.com/59384684/204960618-042a8e17-38f7-4f05-b372-1c655a41e4db.png)
+<br>
+내 프로필 화면입니다.
+nav의 Edit을 눌러 정보를 수정하실 수 있습니다.
+
+***
+v2.2에서 Score 갱신 버튼이 추가되었습니다.
+![image](https://user-images.githubusercontent.com/59384684/204960925-64473366-99de-4631-b103-c48bedbbbf40.png)
+<br>
+Refresh를 누르면 내 점수가 새롭게 갱신됩니다.
+갱신된 점수는 자동으로 DB에서도 갱신됩니다.
+***
+<br>
+
+### 6) edit.html
+
+![image](https://user-images.githubusercontent.com/59384684/204961103-f72c3f20-d3f0-48bc-b6f6-ad225f5c39e1.png)
+<br>
+내 프로필 수정 페이지 입니다.
+회원가입과 동일하게 Intersts와 Skills는 체크박스로 구현되어 있습니다.
+수정하기 전 정보들이 기본적으로 입력되어 있습니다.
+<br>
+이미지는 Upload 버튼을 눌러 수정하실 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/59384684/204961323-8fdad67e-415e-45cd-ab0d-b5bb349de5d3.png)
+<br>
+***
+![image](https://user-images.githubusercontent.com/59384684/204961352-1564412e-7354-4fdd-9332-1a0fd0ac356d.png)
+<br>
+이미지 크기를 포함해서 모든 정보는 5mb보다 작아야 합니다.
+제한은 /backend/gitrank/app.js에서 수정하실 수 있습니다.
+```
+app.use(bodyParser.json({ limit: 5000000 }));
+```
+***
+수정이 끝났으면 Done 버튼을 수정을 완료합니다.
+이제 수정한 대로 프로필이 변경되었습니다.
+
+![image](https://user-images.githubusercontent.com/59384684/204961754-ddfc1efe-ed2c-45c5-b54f-45faf898e2f2.png)
+<br>
+
+수정한 정보는 서버와 DB에서도 변경됩니다.
+***
+<br>
+이제, 검색 기능을 사용해서 원하는 유저와 연락을 주고 받고, 팀을 맺어보세요!!
