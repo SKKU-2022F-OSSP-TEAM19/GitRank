@@ -3,7 +3,11 @@
 <br>
 
 ## 1. Environment settings
-#### 1) 먼저, /backend/gitrank/으로 들어가신 다음 npm start으로 서버를 엽니다.
+#### 1) 코드를 다운받습니다.
+- tag에서 v2.2 이상을 다운 받습니다.
+- 혹은 git clone을 사용합니다.
+
+#### 2) 먼저, /backend/gitrank/으로 들어가신 다음 npm start으로 서버를 엽니다.
 ```
 cd backend/gitrank
 ```
@@ -14,7 +18,7 @@ npm start
 
 <br>
 
-#### 2) CORS Error를 해결하기 위해 browser 설정을 들어가서 Access-Control-Origin을 *로 변경합니다.
+#### 3) CORS Error를 해결하기 위해 browser 설정을 들어가서 Access-Control-Origin을 *로 변경합니다.
 ##### - **이때, Gitrank의 경우 CORS ERROR를 피하기 위해 잠시 모든 접근을 허용해주는 것이므로, Gitrank 이용이 끝나셨으면 기존 값으로 복구시켜야 안전합니다.**
 - Chrome의 경우 Google에 Allow Cors를 검색하시면 플러그인이 검색됩니다.
 ![image](https://user-images.githubusercontent.com/59384684/204947378-af86b9f4-1da5-407c-9856-fd69b43b2e23.png)
@@ -33,12 +37,12 @@ npm start
 
 <br>
 
-#### 3) 다음으로, /frontend/signin.html을 여시면 됩니다.
+#### 4) 다음으로, /frontend/signin.html을 여시면 됩니다.
 ![image](https://user-images.githubusercontent.com/59384684/204946506-dd8df495-3774-4d59-b37e-ec32fec7ba0b.png)
 
 <br>
 
-#### 4) privateInfo 관련 문제가 발생하셨으면, /backend/gitrank/routes 에 privateInfo.js 파일을 생성합니다.
+#### 5) privateInfo 관련 문제가 발생하셨으면, /backend/gitrank/routes 에 privateInfo.js 파일을 생성합니다.
 - Github API Key를 발급받으시고, 키를 넣어주시면 됩니다.
 
 ![image](https://user-images.githubusercontent.com/59384684/204950669-c26bc71b-27e4-455e-9817-9bdc0008e7f7.png)
@@ -218,3 +222,4 @@ app.use(bodyParser.json({ limit: 5000000 }));
 ***
 <br>
 이제, 검색 기능을 사용해서 원하는 유저와 연락을 주고 받고, 팀을 맺어보세요!!
+
