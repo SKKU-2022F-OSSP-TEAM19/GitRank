@@ -251,6 +251,7 @@ app.use(bodyParser.json({ limit: 5000000 }));
 이제, 검색 기능을 사용해서 원하는 유저와 연락을 주고 받고, 팀을 맺어보세요!!
 
 <br>
+<br>
 
 ## 3. Developer Process
 ### 1) Backend - Nickel
@@ -285,6 +286,11 @@ app.use(bodyParser.json({ limit: 5000000 }));
 
 6. Backend에서 추가된 DB를 붙여서, 서버가 종료되어도 데이터를 보존하게 하였습니다. - Nainho
 - tag : v2.0 참고
+<br>
+
+7. 세부 기능이 구체화 되었습니다. - Nainho
+- tag : v2.1 이상 참고
+<br>
 
 #### a) HTML - Nainho, GeonhanKang
 
