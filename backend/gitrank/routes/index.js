@@ -1,9 +1,11 @@
+const { response } = require('express');
 const e = require('express');
 var express = require('express');
 var router = express.Router();
 
 const https = require('https');
 const parser = require('node-html-parser');
+//var privateInfo=require('./privateInfo');
 
 let dbFuncs = require('./dbFuncs');
 let gitFunc = require('./gitScore');
@@ -225,14 +227,14 @@ router.get('/userpage/:userID', (req, res) => {
 })
 
 
-router.get('/score/:username', async (req, res) => {
+router.get('/scoreGitAPI/:username', async (req, res) => {
   let username = req.params.username;
 
   let userPageInfo = DB_profile.filter(e => e.ID === username);
   if (userPageInfo.length === 0) {
     res.status(404).json({
-      result: "error:no such user"
 
+      result: "error:no such user"
     })
   }
   else {
@@ -248,7 +250,7 @@ router.get('/score/:username', async (req, res) => {
 
 
 })
-/*
+
 router.get('/score/:username', async (req, res) => {
   let username = req.params.username;
 
@@ -272,27 +274,33 @@ router.get('/score/:username', async (req, res) => {
         let now = new Date()
 
         let root = parser.parse(data);
-        root = root.querySelector("svg");
-        root.childNodes.forEach((e) => {
-          let arr = e.rawAttrs.split(" ");
-          if (arr.length === 7) {
+        //root=root.querySelector("svg");
+        console.log(data)
+        //   root.childNodes.forEach((e)=>{
+        //     let arr = e.rawAttrs.split(" ");
+        //     if(arr.length===7){
 
 
-            let date = arr[2].match(dataRegex)[0].split("-");
-            let year = Number.parseInt(date[0])
-            let month = Number.parseInt(date[1])
+        //         let date=arr[2].match(dataRegex)[0].split("-");
+        //         let year=Number.parseInt(date[0])
+        //         let month=Number.parseInt(date[1])
 
-            let score = Number.parseInt(arr[1].match(scoreRegex)[0])
-            score = score * (now.getFullYear() === year ? 12 - now.getMonth() + month : 1)
+        //         let score=Number.parseInt(arr[1].match(scoreRegex)[0])
+        //         score=score*(now.getFullYear()===year?12-now.getMonth()+month:1)
 
 
-            retScore += score
+        //         retScore+=score
 
-          }
-        })
+        //     }
+        // })
+        userPageInfo[0].SCORE = retScore;
+        DB_profile = DB_profile.filter(e => e.ID !== username);
+        DB_profile.push(userPageInfo[0]);
+        dbFuncs.saveDatas(false, true, DB_users, DB_profile);
         res.status(200).json({
           gitscore: retScore
         });
+
       })
     });
 
@@ -308,9 +316,8 @@ router.get('/score/:username', async (req, res) => {
     // });
   }
 
-
 })
-*/
+
 
 router.get('/user/signin/:username/:password', (req, res) => {
   let username = req.params.username;
@@ -375,5 +382,72 @@ router.get('/user/signingin/:username', (req, res) => {
       result: "error:no such user sginined"
     })
   }
+})
+
+router.get('/user/contribution/score/:username', (req, res) => {
+
+  let username = req.params.username;
+
+  let userPageInfo = DB_profile.filter(e => e.ID === username);
+  if (userPageInfo.length === 0) {
+    res.status(404).json({
+      result: "error:no such user"
+    })
+  }
+
+  https.get('https://github.com/' + userPageInfo[0].GITHUB, rres => {
+    let data = ""
+    rres.on("data", d => {
+      data += d;
+    })
+    rres.on('end', () => {
+      let root = parser.parse(data);
+      root = root.querySelector(".js-calendar-graph-svg");
+      //console.log(root)
+      //root=root.toString()
+      let retScore = 500;
+      root = root.querySelectorAll(".ContributionCalendar-day");
+      let date = 0;
+      root.forEach((e) => {
+        let values = Object.values(e._attrs);
+        let count = Number(values[7]);
+        //console.log(count)
+        retScore = retScore + (count * (parseInt(++date / 37)))
+
+        //          Object.keys
+
+      })
+      //   root.childNodes.forEach((e)=>{
+      //     let arr = e.rawAttrs.split(" ");
+      //     if(arr.length===7){
+
+
+      //         let date=arr[2].match(dataRegex)[0].split("-");
+      //         let year=Number.parseInt(date[0])
+      //         let month=Number.parseInt(date[1])
+
+      //         let score=Number.parseInt(arr[1].match(scoreRegex)[0])
+      //         score=score*(now.getFullYear()===year?12-now.getMonth()+month:1)
+
+
+      //         retScore+=score
+
+      //     }
+      // })
+
+      //console.log(retScore);
+      //console.log(root.querySelector(".js-calendar-graph-svg"))
+
+
+      userPageInfo[0].SCORE = retScore;
+      DB_profile = DB_profile.filter(e => e.ID !== username);
+      DB_profile.push(userPageInfo[0]);
+      dbFuncs.saveDatas(false, true, DB_users, DB_profile);
+      res.status(200).json({
+        gitscore: retScore
+      });
+    })
+  })
+
 })
 module.exports = router;
