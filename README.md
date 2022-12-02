@@ -26,7 +26,6 @@ npm install
 
 npm start
 ```
-![image](https://user-images.githubusercontent.com/59384684/204947244-78529fb8-2478-47cc-97da-ffd27eff6732.png)
 
 <br>
 
