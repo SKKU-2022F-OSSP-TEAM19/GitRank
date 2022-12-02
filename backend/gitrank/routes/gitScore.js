@@ -40,24 +40,24 @@ let ff= async (githubID)=> {
     console.log(to)
     let now=new Date()
     let ret =500;
-    // to.childNodes.forEach((e)=>{
-    //     let arr = e.rawAttrs.split(" ");
-    //     if(arr.length===7){
-    //         //console.log(arr[1].match(scoreRegex)[0]);
+    to.childNodes.forEach((e)=>{
+        let arr = e.rawAttrs.split(" ");
+        if(arr.length===7){
+            //console.log(arr[1].match(scoreRegex)[0]);
             
-    //         let date=arr[2].match(dataRegex)[0].split("-");
-    //         let year=Number.parseInt(date[0])
-    //         let month=Number.parseInt(date[1])
-    //         //console.log(arr[2].match(dataRegex)[0]);
-    //         let score=Number.parseInt(arr[1].match(scoreRegex)[0])
-    //         score=score*(now.getFullYear()===year?12-now.getMonth()+month:1)
-    //         //console.log(score);
+            let date=arr[2].match(dataRegex)[0].split("-");
+            let year=Number.parseInt(date[0])
+            let month=Number.parseInt(date[1])
+            //console.log(arr[2].match(dataRegex)[0]);
+            let score=Number.parseInt(arr[1].match(scoreRegex)[0])
+            score=score*(now.getFullYear()===year?12-now.getMonth()+month:1)
+            //console.log(score);
             
-    //         ret+=score
-    //         //console.log(retScore)
-    //         //console.log(year+"-"+month+": "+score);
-    //     }
-    // })
+            ret+=score
+            //console.log(retScore)
+            //console.log(year+"-"+month+": "+score);
+        }
+    })
     return ret;
     // https.get(baseUrl+githubID,(res)=>{
     // let ret=0;
