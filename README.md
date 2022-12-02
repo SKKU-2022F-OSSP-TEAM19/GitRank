@@ -1,6 +1,16 @@
 # GitRank
 
+Application type: Web Page
 <br>
+## 0. Contact
+1. 2021312819 강건한 hoskal09@g.skku.edu
+   FE(html+css+Js)
+2. 2019310390 나인호: gnih1226@gmail.com 
+   FE(html+css+Js)  
+3. 2019315505 이원규: stbaker517@g.skku.edu 
+   BE(nodejs+Express)
+
+
 
 ## 1. Environment settings
 #### 1) 코드를 다운받습니다.
