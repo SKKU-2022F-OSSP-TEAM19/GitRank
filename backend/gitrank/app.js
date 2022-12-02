@@ -16,6 +16,12 @@ var app = express();
 // })
 
 // view engine setup
+
+const corsOption={
+  origin: '*',
+  credential: true,
+}
+app.use(cors(corsOption));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(bodyParser.json({ limit: 5000000 }));
