@@ -24,13 +24,22 @@ Application type: Web Page
 cd backend/gitrank
 ```
 ```
-
 npm install
-
+```
+```
 npm start
 ```
 
 <br>
+
+***
+v3.0.0 <br>
+CORS Error가 개선되었습니다.
+
+크롬 플러그인 설치 없이 우선 사용을 하시면 됩니다.
+
+CORS Error가 발생한다면 밑의 방법을 이용하면 됩니다.
+***
 
 #### 3) CORS Error를 해결하기 위해 browser 설정을 들어가서 Access-Control-Origin을 *로 변경합니다.
 
