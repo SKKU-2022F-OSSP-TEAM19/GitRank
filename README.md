@@ -22,9 +22,36 @@ Github: https://github.com/SKKU-2022F-OSSP-TEAM19<br><br>
 3. Develop process
 4. API Sheet
 
+
 ![test](https://user-images.githubusercontent.com/59384684/205315059-d35140e7-db59-4322-8e1a-ce2ea8fc6396.png)
 
 ![publish](https://user-images.githubusercontent.com/59384684/205315182-3264280e-8e7f-4683-a5eb-b415e73b6c59.png)
+
+
+### Node packages
+{
+  "name": "skku-gitrank",
+  "version": "1.7.0",
+  "private": false,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test":"jest"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "^1.9.2",
+    "morgan": "~1.9.1",
+    "node-html-parser": "^6.1.4",
+    "octokit": "^2.0.10"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
+  }
+}
 
 
 <br>
@@ -396,3 +423,341 @@ app.use(bodyParser.json({ limit: 5000000 }));
 
 <br>
 우수 프로젝트 시상 프로그램에 지원합니다.
+
+## 4. API SHEET
+
+
+### /user/signup
+POST
+
+BODY example
+
+```jsx
+TPYE: JSON
+{
+	"ID":"nickle", //string
+	"PW":"006789", //string
+	"GITHUB":"nickel", //string
+	"INTERESTS":["BACKEND","FRONTEND"], //array
+	"SKILLS":["C++","PYTHON","JAVA"]  // array
+}
+```
+
+response
+
+1. ID 중복일 경우
+    
+    HTTP 400 JSON
+    
+    ```jsx
+    {
+      result:"error:same ID"
+    }
+    ```
+    
+2. GITHUB 중복일 경우
+    
+    HTTP 400 JSON
+    
+    ```jsx
+    {
+       result:"error: same GITHUB"
+    }
+    ```
+    
+3. 성공할 경우
+    
+    HTTP 200 JSON
+    
+    ```jsx
+    {
+        result:"result: success"
+    }
+    ```
+
+
+### /users/scoreDescOrder
+GET
+유저 정보를 score 기준으로 내림차순 정렬함.
+HTTP 200
+TYPE: JSON ARRAY
+
+[
+	{
+		"ID": "nickle",
+		"PW": "006789",
+		"GITHUB": "nickel",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON",
+			"JAVA"
+		]
+	},
+	{
+		"ID": "nickle2",
+		"PW": "006789",
+		"GITHUB": "nickel2",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON"
+		]
+	},
+	{
+		"ID": "nickle3",
+		"PW": "006789",
+		"GITHUB": "nickel3",
+		"SCORE": 0,
+		"INTERESTS": [
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"JAVASCRIPT"
+		]
+	}
+]
+
+### /users/scoreAscOrder
+GET
+
+TYPE: JSON ARRAY
+
+[
+	{
+		"ID": "nickle",
+		"PW": "006789",
+		"GITHUB": "nickel",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON",
+			"JAVA"
+		]
+	},
+	{
+		"ID": "nickle2",
+		"PW": "006789",
+		"GITHUB": "nickel2",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON"
+		]
+	},
+	{
+		"ID": "nickle3",
+		"PW": "006789",
+		"GITHUB": "nickel3",
+		"SCORE": 0,
+		"INTERESTS": [
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"JAVASCRIPT"
+		]
+	}
+]
+
+### /users/skills/<skill>
+GET 
+<skill>에 해당하는  유저 리스트를 리턴해준다.
+
+Example**: [http://localhost:3000/users/skills/C++](http://localhost:3000/users/skills/C++)** 
+
+HTTP 200
+
+```jsx
+TPYE: JSON ARRAY
+[
+	{
+		"ID": "nickle",
+		"GITHUB": "nickel",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON",
+			"JAVA"
+		]
+	},
+	{
+		"ID": "nickle2",
+		"GITHUB": "nickel2",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON"
+		]
+	}
+]
+```
+
+### /users/interests/<interest>
+
+GET
+
+TPYE: JSON ARRAY
+[
+	{
+		"ID": "nickle",
+		"GITHUB": "nickel",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON",
+			"JAVA"
+		]
+	},
+	{
+		"ID": "nickle2",
+		"GITHUB": "nickel2",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON"
+		]
+	},
+	{
+		"ID": "nickle3",
+		"GITHUB": "nickel3",
+		"SCORE": 0,
+		"INTERESTS": [
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"JAVASCRIPT"
+		]
+	}
+]
+
+### /userpage/edit/<username>
+
+POST
+
+post로 아래 예시와 같이 body를 보내면 정보를 수정한다. res로는 변경된 profile 정보를 받는다
+ 단, score는 수정하지 않는다.
+
+Type POST
+url http://localhost:3000/userpage/edit/nickel
+body
+{
+	"ID":"nickel",
+	"IMG":"photo src",
+  "INTERESTS":["BACKEND","FRONTEND","DATA","DB"],
+  "COMMENT":"testestes",
+
+  "SKILLS":["C++","PYTHON","JAVA","LOL","LOL"]
+}
+
+response body
+
+{
+	"ID":"nickel",
+	"IMG":"photo src",
+  "INTERESTS":["BACKEND","FRONTEND","DATA","DB"],
+  "COMMENT":"testestes",
+
+  "SKILLS":["C++","PYTHON","JAVA","LOL","LOL"]
+}
+
+### /userpage/<userID>
+GET
+
+TYPE GET
+url http://localhost:3000/userpage/nickel
+
+Res Body
+{
+	"ID": "nickel",
+	"GITHUB": "stbaker517",
+	"IMG": "none",
+	"INTERESTS": [
+		"BACKEND",
+		"FRONTEND"
+	],
+	"COMMENT": "",
+	"SCORE": 0,
+	"SKILLS": [
+		"C++",
+		"PYTHON",
+		"JAVA"
+	]
+}
+
+### /score/<username>
+GET
+
+TYPE GET
+url /score/:username
+
+Response Body
+{
+	"gitscore": 0
+}
+
+### /user/signin/<username>/<password>
+
+TYPE GET
+url http://localhost:3000/user/signin/nickel/006789
+
+res body
+{
+	"result": "success"
+}
+
+### /user/signout/<username>
+GET
+
+로그인 된 유저를 로그아웃한다. 만약 로그인 하지 않은 유저에 대해 요청이 들어오면 404를 리턴한다.
+
+TYPE GET
+url http://localhost:3000/user/signout/nickel
+
+response body
+{
+	"result": "success"
+}
+
+### /user/signingin/<username>
+GET
+
+유저가 로그인 되어있는지를 확인하는 api
+TYPE:GET
+url http://localhost:3000/users/signingin/nickel
+
+Response body
+{
+	"result": "success"
+}
