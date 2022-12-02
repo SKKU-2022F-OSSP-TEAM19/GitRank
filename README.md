@@ -1,20 +1,34 @@
 # GitRank
 
+
+Application type: Web Page
 <br>
+## 0. Contact
+1. 2021312819 강건한 hoskal09@g.skku.edu
+   FE(html+css+Js)
+2. 2019310390 나인호: gnih1226@gmail.com 
+   FE(html+css+Js)  
+3. 2019315505 이원규: stbaker517@g.skku.edu 
+   BE(nodejs+Express)
+
+
 
 ## 1. Environment settings
 #### 1) 코드를 다운받습니다.
-- tag에서 v2.2 이상을 다운 받습니다.
+- tag에서 v3.0 이상을 다운 받습니다.
 - 혹은 git clone을 사용합니다.
 
-#### 2) 먼저, /backend/gitrank/으로 들어가신 다음 npm start으로 서버를 엽니다.
+#### 2) 먼저, /backend/gitrank/으로 들어가신 다음 npm 서버를 설치 후 실행합니다.
+
 ```
 cd backend/gitrank
 ```
 ```
+
+npm install
+
 npm start
 ```
-![image](https://user-images.githubusercontent.com/59384684/204947244-78529fb8-2478-47cc-97da-ffd27eff6732.png)
 
 <br>
 
