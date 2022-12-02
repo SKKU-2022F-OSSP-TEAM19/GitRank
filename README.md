@@ -72,7 +72,7 @@ npm start
 3. PW가 틀린 경우 : "error:password doesn't match"이 출력됩니다.
 ![image](https://user-images.githubusercontent.com/59384684/204951768-01851558-058f-44fb-b58c-b656b409cd62.png)
 ***
-- 다른 페이지에서 넘어오거나, 새로운 창으로 signin을 접속하실 경우, 중복 로그인 방지를 위해 기존에 접속했던 정보를 로그아웃 됩니다.
+- 다른 페이지에서 넘어오거나, 새로운 창으로 signin을 접속하실 경우, 중복 로그인 방지를 위해 기존에 접속했던 유저는 로그아웃 됩니다.
 ![image](https://user-images.githubusercontent.com/59384684/204951961-c9be85a4-0a11-4637-9eca-84acbdaba321.png)
 <br>
 
