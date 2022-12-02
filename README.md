@@ -29,6 +29,7 @@ Github: https://github.com/SKKU-2022F-OSSP-TEAM19<br><br>
 
 
 ### Node packages
+```
 {
   "name": "skku-gitrank",
   "version": "1.7.0",
@@ -52,7 +53,7 @@ Github: https://github.com/SKKU-2022F-OSSP-TEAM19<br><br>
     "jest": "^29.3.1"
   }
 }
-
+```
 
 <br>
 
