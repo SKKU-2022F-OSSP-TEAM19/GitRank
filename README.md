@@ -1,9 +1,13 @@
 # GitRank
 
 
-Application type: Web Page
-Youtube: https://youtu.be/y1ituYyKQP8
-Github: https://github.com/SKKU-2022F-OSSP-TEAM19
+Application type: Web Page<br>
+Youtube: https://youtu.be/y1ituYyKQP8<br>
+Github: https://github.com/SKKU-2022F-OSSP-TEAM19<br><br>
+### What's in this document
+-Contact
+-Env Settings
+-Develop process
 <br>
 ## 0. Contact
 1. 2021312819 강건한 hoskal09@g.skku.edu
