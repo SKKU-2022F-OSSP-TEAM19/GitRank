@@ -3,7 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const mysql=require("mysql");
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,9 +16,15 @@ var app = express();
 // })
 
 // view engine setup
+
+const corsOption={
+  origin: '*',
+  credential: true,
+}
+app.use(cors(corsOption));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+app.use(bodyParser.json({ limit: 5000000 }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

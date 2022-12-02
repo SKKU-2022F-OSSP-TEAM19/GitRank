@@ -6,6 +6,13 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# 사설 추가
+#backend/gitrank/routes/privateInfo.js
+#backend/gitrank/DB/*.*
+backend/gitrank/node_modules
+backend/gitrank/node_modules/*.*
+
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
