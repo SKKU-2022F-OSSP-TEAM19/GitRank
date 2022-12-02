@@ -15,11 +15,18 @@ Github: https://github.com/SKKU-2022F-OSSP-TEAM19<br><br>
 - documentation
 
 ### What's in this document
-- Contact
-- Env Settings
-- Develop process
-- User's guide
-- API Sheet
+
+0. Contact
+1. Env Settings
+2. User's guide
+3. Develop process
+4. API Sheet
+
+![test](https://user-images.githubusercontent.com/59384684/205315059-d35140e7-db59-4322-8e1a-ce2ea8fc6396.png)
+
+![publish](https://user-images.githubusercontent.com/59384684/205315182-3264280e-8e7f-4683-a5eb-b415e73b6c59.png)
+
+
 <br>
 
 ## 0. Contact
