@@ -270,25 +270,25 @@ router.get('/score/:username',async (req,res)=>{
           let now=new Date()
 
           let root=parser.parse(data);
-          //root=root.querySelector("svg");
-          console.log(data)
-        //   root.childNodes.forEach((e)=>{
-        //     let arr = e.rawAttrs.split(" ");
-        //     if(arr.length===7){
+          root=root.querySelector("svg");
+          //console.log(data)
+          root.childNodes.forEach((e)=>{
+            let arr = e.rawAttrs.split(" ");
+            if(arr.length===7){
 
                 
-        //         let date=arr[2].match(dataRegex)[0].split("-");
-        //         let year=Number.parseInt(date[0])
-        //         let month=Number.parseInt(date[1])
+                let date=arr[2].match(dataRegex)[0].split("-");
+                let year=Number.parseInt(date[0])
+                let month=Number.parseInt(date[1])
 
-        //         let score=Number.parseInt(arr[1].match(scoreRegex)[0])
-        //         score=score*(now.getFullYear()===year?12-now.getMonth()+month:1)
+                let score=Number.parseInt(arr[1].match(scoreRegex)[0])
+                score=score*(now.getFullYear()===year?12-now.getMonth()+month:1)
 
                 
-        //         retScore+=score
+                retScore+=score
 
-        //     }
-        // })
+            }
+        })
         userPageInfo[0].SCORE=retScore;
         DB_profile=DB_profile.filter(e=>e.ID!==username);
         DB_profile.push(userPageInfo[0]);

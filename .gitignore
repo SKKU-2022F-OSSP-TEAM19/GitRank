@@ -7,8 +7,8 @@ yarn-error.log*
 lerna-debug.log*
 
 # 사설 추가
-backend/gitrank/routes/privateInfo.js
-backend/gitrank/DB/*.*
+#backend/gitrank/routes/privateInfo.js
+#backend/gitrank/DB/*.*
 backend/gitrank/node_modules
 backend/gitrank/node_modules/*.*
 
