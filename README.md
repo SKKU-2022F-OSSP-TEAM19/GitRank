@@ -14,7 +14,7 @@ Application type: Web Page
 
 ## 1. Environment settings
 #### 1) 코드를 다운받습니다.
-- tag에서 v2.2 이상을 다운 받습니다.
+- tag에서 v3.0 이상을 다운 받습니다.
 - 혹은 git clone을 사용합니다.
 
 #### 2) 먼저, /backend/gitrank/으로 들어가신 다음 npm start으로 서버를 엽니다.
