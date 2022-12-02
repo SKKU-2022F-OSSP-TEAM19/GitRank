@@ -17,11 +17,13 @@ Application type: Web Page
 - tag에서 v3.0 이상을 다운 받습니다.
 - 혹은 git clone을 사용합니다.
 
-#### 2) 먼저, /backend/gitrank/으로 들어가신 다음 npm start으로 서버를 엽니다.
+#### 2) 먼저, /backend/gitrank/으로 들어가신 다음 npm 서버를 설치 후 실행합니다.
 ```
 cd backend/gitrank
 ```
 ```
+npm install
+
 npm start
 ```
 ![image](https://user-images.githubusercontent.com/59384684/204947244-78529fb8-2478-47cc-97da-ffd27eff6732.png)
