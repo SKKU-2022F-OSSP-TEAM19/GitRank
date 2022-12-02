@@ -1,5 +1,1 @@
-let APIKEY='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'
-
-//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 이푸ㅡㅇ원
-
-//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 내거
+let APIKEY='GITHUB_API_KEY'
