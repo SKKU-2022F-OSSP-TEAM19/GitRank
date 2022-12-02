@@ -4,10 +4,22 @@
 Application type: Web Page<br>
 Youtube: https://youtu.be/y1ituYyKQP8<br>
 Github: https://github.com/SKKU-2022F-OSSP-TEAM19<br><br>
+
+### What we did in this project
+- version control
+- branching
+- pull request
+- issues tracking
+- publishing
+- testing
+- documentation
+
 ### What's in this document
 - Contact
 - Env Settings
 - Develop process
+- User's guide
+- API Sheet
 <br>
 
 ## 0. Contact
