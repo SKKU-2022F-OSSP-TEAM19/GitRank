@@ -1,22 +1,99 @@
 # GitRank
 
+
+Application type: Web Page<br>
+Youtube: https://youtu.be/y1ituYyKQP8<br>
+Github: https://github.com/SKKU-2022F-OSSP-TEAM19<br><br>
+
+### What we did in this project
+- version control
+- branching
+- pull request
+- issues tracking
+- publishing
+- testing
+- documentation
+
+### What's in this document
+
+0. Contact
+1. Env Settings
+2. User's guide
+3. Develop process
+4. API Sheet
+
+
+![test](https://user-images.githubusercontent.com/59384684/205315059-d35140e7-db59-4322-8e1a-ce2ea8fc6396.png)
+
+![publish](https://user-images.githubusercontent.com/59384684/205315182-3264280e-8e7f-4683-a5eb-b415e73b6c59.png)
+
+
+### Node packages
+```
+{
+  "name": "skku-gitrank",
+  "version": "1.7.0",
+  "private": false,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test":"jest"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "^1.9.2",
+    "morgan": "~1.9.1",
+    "node-html-parser": "^6.1.4",
+    "octokit": "^2.0.10"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
+  }
+}
+```
+
 <br>
+
+## 0. Contact
+1. 2021312819 강건한 hoskal09@g.skku.edu
+   FE(html+css+Js)
+2. 2019310390 나인호: gnih1226@gmail.com 
+   FE(html+css+Js)  
+3. 2019315505 이원규: stbaker517@g.skku.edu 
+   BE(nodejs+Express)
+
+
 
 ## 1. Environment settings
 #### 1) 코드를 다운받습니다.
-- tag에서 v2.2 이상을 다운 받습니다.
+- tag에서 v3.0 이상을 다운 받습니다.
 - 혹은 git clone을 사용합니다.
 
-#### 2) 먼저, /backend/gitrank/으로 들어가신 다음 npm start으로 서버를 엽니다.
+#### 2) 먼저, /backend/gitrank/으로 들어가신 다음 npm 서버를 설치 후 실행합니다.
+
 ```
 cd backend/gitrank
 ```
 ```
+npm install
+```
+```
 npm start
 ```
-![image](https://user-images.githubusercontent.com/59384684/204947244-78529fb8-2478-47cc-97da-ffd27eff6732.png)
 
 <br>
+
+***
+v3.0.0 <br>
+CORS Error가 개선되었습니다.
+
+크롬 플러그인 설치 없이 우선 사용을 하시면 됩니다.
+
+CORS Error가 발생한다면 밑의 방법을 이용하면 됩니다.
+***
 
 #### 3) CORS Error를 해결하기 위해 browser 설정을 들어가서 Access-Control-Origin을 *로 변경합니다.
 
@@ -346,4 +423,349 @@ app.use(bodyParser.json({ limit: 5000000 }));
 - readImage() : Upload를 통해서 이미지를 변경한다.
 
 <br>
+
+
+## 4. API SHEET
+
+
+### /user/signup
+POST
+
+BODY example
+
+```jsx
+TPYE: JSON
+{
+	"ID":"nickle", //string
+	"PW":"006789", //string
+	"GITHUB":"nickel", //string
+	"INTERESTS":["BACKEND","FRONTEND"], //array
+	"SKILLS":["C++","PYTHON","JAVA"]  // array
+}
+```
+
+response
+
+1. ID 중복일 경우
+    
+    HTTP 400 JSON
+    
+    ```jsx
+    {
+      result:"error:same ID"
+    }
+    ```
+    
+2. GITHUB 중복일 경우
+    
+    HTTP 400 JSON
+    
+    ```jsx
+    {
+       result:"error: same GITHUB"
+    }
+    ```
+    
+3. 성공할 경우
+    
+    HTTP 200 JSON
+    
+    ```jsx
+    {
+        result:"result: success"
+    }
+    ```
+
+
+### /users/scoreDescOrder
+GET
+유저 정보를 score 기준으로 내림차순 정렬함.
+HTTP 200
+TYPE: JSON ARRAY
+
+[
+	{
+		"ID": "nickle",
+		"PW": "006789",
+		"GITHUB": "nickel",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON",
+			"JAVA"
+		]
+	},
+	{
+		"ID": "nickle2",
+		"PW": "006789",
+		"GITHUB": "nickel2",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON"
+		]
+	},
+	{
+		"ID": "nickle3",
+		"PW": "006789",
+		"GITHUB": "nickel3",
+		"SCORE": 0,
+		"INTERESTS": [
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"JAVASCRIPT"
+		]
+	}
+]
+
+### /users/scoreAscOrder
+GET
+
+TYPE: JSON ARRAY
+
+[
+	{
+		"ID": "nickle",
+		"PW": "006789",
+		"GITHUB": "nickel",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON",
+			"JAVA"
+		]
+	},
+	{
+		"ID": "nickle2",
+		"PW": "006789",
+		"GITHUB": "nickel2",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON"
+		]
+	},
+	{
+		"ID": "nickle3",
+		"PW": "006789",
+		"GITHUB": "nickel3",
+		"SCORE": 0,
+		"INTERESTS": [
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"JAVASCRIPT"
+		]
+	}
+]
+
+### /users/skills/<skill>
+GET 
+<skill>에 해당하는  유저 리스트를 리턴해준다.
+
+Example**: [http://localhost:3000/users/skills/C++](http://localhost:3000/users/skills/C++)** 
+
+HTTP 200
+
+```jsx
+TPYE: JSON ARRAY
+[
+	{
+		"ID": "nickle",
+		"GITHUB": "nickel",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON",
+			"JAVA"
+		]
+	},
+	{
+		"ID": "nickle2",
+		"GITHUB": "nickel2",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON"
+		]
+	}
+]
+```
+
+### /users/interests/<interest>
+
+GET
+
+TPYE: JSON ARRAY
+[
+	{
+		"ID": "nickle",
+		"GITHUB": "nickel",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON",
+			"JAVA"
+		]
+	},
+	{
+		"ID": "nickle2",
+		"GITHUB": "nickel2",
+		"SCORE": 0,
+		"INTERESTS": [
+			"BACKEND",
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"C++",
+			"PYTHON"
+		]
+	},
+	{
+		"ID": "nickle3",
+		"GITHUB": "nickel3",
+		"SCORE": 0,
+		"INTERESTS": [
+			"FRONTEND"
+		],
+		"SKILLS": [
+			"JAVASCRIPT"
+		]
+	}
+]
+
+### /userpage/edit/<username>
+
+POST
+
+post로 아래 예시와 같이 body를 보내면 정보를 수정한다. res로는 변경된 profile 정보를 받는다
+ 단, score는 수정하지 않는다.
+
+Type POST
+url http://localhost:3000/userpage/edit/nickel
+body
+{
+	"ID":"nickel",
+	"IMG":"photo src",
+  "INTERESTS":["BACKEND","FRONTEND","DATA","DB"],
+  "COMMENT":"testestes",
+
+  "SKILLS":["C++","PYTHON","JAVA","LOL","LOL"]
+}
+
+response body
+
+{
+	"ID":"nickel",
+	"IMG":"photo src",
+  "INTERESTS":["BACKEND","FRONTEND","DATA","DB"],
+  "COMMENT":"testestes",
+
+  "SKILLS":["C++","PYTHON","JAVA","LOL","LOL"]
+}
+
+### /userpage/<userID>
+GET
+
+TYPE GET
+url http://localhost:3000/userpage/nickel
+
+Res Body
+{
+	"ID": "nickel",
+	"GITHUB": "stbaker517",
+	"IMG": "none",
+	"INTERESTS": [
+		"BACKEND",
+		"FRONTEND"
+	],
+	"COMMENT": "",
+	"SCORE": 0,
+	"SKILLS": [
+		"C++",
+		"PYTHON",
+		"JAVA"
+	]
+}
+
+### /score/<username>
+GET
+
+TYPE GET
+url /score/:username
+
+Response Body
+{
+	"gitscore": 0
+}
+
+### /user/signin/<username>/<password>
+
+TYPE GET
+url http://localhost:3000/user/signin/nickel/006789
+
+res body
+{
+	"result": "success"
+}
+
+### /user/signout/<username>
+GET
+
+로그인 된 유저를 로그아웃한다. 만약 로그인 하지 않은 유저에 대해 요청이 들어오면 404를 리턴한다.
+
+TYPE GET
+url http://localhost:3000/user/signout/nickel
+
+response body
+{
+	"result": "success"
+}
+
+### /user/signingin/<username>
+GET
+
+유저가 로그인 되어있는지를 확인하는 api
+TYPE:GET
+url http://localhost:3000/users/signingin/nickel
+
+Response body
+{
+	"result": "success"
+}
+
+<br>
+
+***
+
 우수 프로젝트 시상 프로그램에 지원합니다.
+우수 프로젝트 시상 프로그램에 지원합니다
