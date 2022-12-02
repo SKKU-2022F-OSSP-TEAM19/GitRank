@@ -423,7 +423,7 @@ app.use(bodyParser.json({ limit: 5000000 }));
 - readImage() : Upload를 통해서 이미지를 변경한다.
 
 <br>
-우수 프로젝트 시상 프로그램에 지원합니다.
+
 
 ## 4. API SHEET
 
@@ -762,3 +762,8 @@ Response body
 {
 	"result": "success"
 }
+
+<br>
+***
+
+우수 프로젝트 시상 프로그램에 지원합니다.
