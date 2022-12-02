@@ -64,24 +64,21 @@ refresh.addEventListener("click", () => {
     })
         .then(res => (res.json()))
         .then(json => {
-            if (json.gitscore) {
-                console.log(json.gitsocre);
-            }
-        })
-
-    let url = "http://localhost:3000/userpage/" + user.ID;
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-        .then(res => res.json())
-        .then(json => {
-            //alert("Hi");
-            let span_rank = document.getElementById("user_rank");
-            span_rank.innerHTML = 1000;
-            span_rank.innerHTML = json.SCORE;
+            console.log(json);
+            let url = "http://localhost:3000/userpage/" + user.ID;
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(res => res.json())
+                .then(json => {
+                    //alert("Hi");
+                    let span_rank = document.getElementById("user_rank");
+                    span_rank.innerHTML = 1000;
+                    span_rank.innerHTML = json.SCORE;
+                })
         })
 
 })

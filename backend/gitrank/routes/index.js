@@ -2,7 +2,6 @@ const { response } = require('express');
 const e = require('express');
 var express = require('express');
 var router = express.Router();
-
 const https = require('https');
 const parser = require('node-html-parser');
 //var privateInfo=require('./privateInfo');
@@ -226,14 +225,12 @@ router.get('/userpage/:userID', (req, res) => {
   }
 })
 
-
 router.get('/scoreGitAPI/:username', async (req, res) => {
   let username = req.params.username;
 
   let userPageInfo = DB_profile.filter(e => e.ID === username);
   if (userPageInfo.length === 0) {
     res.status(404).json({
-
       result: "error:no such user"
     })
   }
@@ -250,7 +247,6 @@ router.get('/scoreGitAPI/:username', async (req, res) => {
 
 
 })
-
 router.get('/score/:username', async (req, res) => {
   let username = req.params.username;
 
@@ -315,6 +311,7 @@ router.get('/score/:username', async (req, res) => {
     //   gitscore:score
     // });
   }
+
 
 })
 
