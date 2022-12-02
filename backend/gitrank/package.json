@@ -1,9 +1,10 @@
 {
-  "name": "gitrank",
+  "name": "skku-gitrank",
   "version": "1.7.0",
-  "private": true,
+  "private": false,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test":"jest"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,5 +16,8 @@
     "morgan": "~1.9.1",
     "node-html-parser": "^6.1.4",
     "octokit": "^2.0.10"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
   }
 }
