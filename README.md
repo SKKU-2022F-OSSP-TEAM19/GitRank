@@ -1,5 +1,7 @@
 # GitRank
 
+![image](https://user-images.githubusercontent.com/82107503/208056136-626bb36c-11ff-4c0c-9752-f42a74ea3e44.png)
+
 
 Application type: Web Page<br>
 Youtube: https://youtu.be/y1ituYyKQP8<br>
